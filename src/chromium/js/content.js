@@ -15,10 +15,10 @@ var init = function () {
 	var
 		  host = location.hostname.split(".").slice(-2).join(".")
 		, subdomain = location.hostname.split(".")[0]
-		, path = location.pathname.slice(1)
+		, path = location.pathname
 		, doc = document
 		, $ = function (query) {
-			return doc.querySelector(query);
+			return doc.querySelectorAll(query);
 		}
 		, injectCSS = function () {
 			var
@@ -39,7 +39,7 @@ var init = function () {
 			elt.setAttribute("x-webkit-speech", "");
 			elt.setAttribute("speech", "");
 		}
-		, search
+		, searchBoxes
 		// Google TLDs list from http://www.thomasbindl.com/blog/?title=list_of_googel_tlds
 		, googleTLDs = "com de at pl fr nl it com.tr es ch be gr com.br lu fi pt hu hr bg com.mx si sk ro ca co.uk cl com.ar se cz dk co.th com.co lt co.id co.in co.il com.eg cn co.ve ru co.jp com.pe com.au co.ma co.za com.ph com.sa ie co.kr no com.ec com.vn lv com.mt com.uy ae ba co.nz com.ua co.cr ee com.do com.tw com.hk com.my com.sv com.pr lk com.gt com.bd com.pk is li com.bh com.ni com.py com.ng com.bo co.ke hn com.sg mu ci jo nu com.jm com.ly co.yu tt com.kh ge com.na com.et sm cd gm com.qa dj com.cu com.pa gp az as pl mn ht md am sn je com.bn com.ai co.zm ma rw co.ug com.vc com at com.gi to com.om kz co.uz"
 			.replace(/\./g, "\\.").split(" ")
@@ -50,16 +50,18 @@ var init = function () {
 			  {host: "duckduckgo.com", selectors: ["#hfih", "#hfi"], margin: "6px 0 0 0"}
 			, {host: "bing.com", selectors: "input[name='q']", margin: "2px 0 0 0"}
 			, {host: "yahoo.com", selectors: "input[name='p']", margin: "4px 0 0 0"}
-			, {host: "wikpedia.org", excludedPaths: "", selectors: "#searchInput", margin: "3px 0 0 0"}
+			, {host: "wikpedia.org", excludedPaths: "/", selectors: "#searchInput", margin: "3px 0 0 0"}
 			, {host: "wolframalpha.com", selectors: "#i"}
-			, {host: "github.com", allowedPaths: "search", margin: "3px 0 0 0"}
+			, {host: "github.com", allowedPaths: "/search", selectors:"#search_form input[name='q']", margin: "3px 0 0 0"}
 			, {host: "reddit.com", selectors: "input[name='q']", margin: "3px 0 0 0"}
 			, {host: "twitter.com", excludedSubdomains: "search", selectors: "#search-query", margin: "5px 1.4em 0 0"}
 			, {host: "facebook.com", selectors: "#q", margin: "2px 0 0 0"}
+			, {host: "youtube.com", selectors: "#masthead-search-term", margin:"3px 0 0 0"}
 		]
 		, i = simpleCases.length
+		, j
 		, arr = function (maybeArray) {
-			return Array.prototype.concat.call(maybeArray);
+			return [].concat(maybeArray);
 		}
 		, filter
 		, selectors
@@ -78,12 +80,15 @@ var init = function () {
 				(simpleCases[i].allowedPaths &&
 					((filter = arr(simpleCases[i].allowedPaths))[0] && filter.indexOf(path) === -1))
 			) {
-					return;
+					break;
 			}
 			selectors = arr(simpleCases[i].selectors);
-			search = $(selectors.join(", "));
-			if (search) {
-				addSpeechInput(search);
+			searchBoxes = $(selectors.join(", "));
+			j = searchBoxes.length;
+			if (j) {
+				while (j--) {
+					addSpeechInput(searchBoxes.item(j));
+				}
 				css = selectors.join("::-webkit-input-speech-button, ") + "::-webkit-input-speech-button {" +
 					"float: right;";
 				if (simpleCases[i].margin) {
@@ -91,28 +96,31 @@ var init = function () {
 				}
 				css += "}";
 				injectCSS(css);
-				return;
 			}
+			break;
 		}
 	}
 	if (googleHostRegex.test(location.hostname)) {
-		search = $("input[name='q']");
+		searchBoxes = $("input[name='q']");
 		var
 			  googleSubdomain
 			, googlePath
 			, topMargin = 2
 		;
+		i = searchBoxes.length;
 		// code.google.com has consistent search boxes on every page
-		if (search && subdomain === "code" || (
+		if (i && subdomain === "code" || (
 				(googleSubdomain = supportedGoogleSubdomains.indexOf(subdomain)) !== -1 &&
-				(googlePath = supportedGooglePaths.indexOf(path)) !== -1
+				(googlePath = supportedGooglePaths.indexOf(path.slice(1))) !== -1
 			)
 		) {
-			addSpeechInput(search);
 			if (googleSubdomain === 5) {
 				topMargin = 5;
 			} else if (googlePath === 8) {
 				topMargin = 4;
+			}
+			while (i--) {
+				addSpeechInput(searchBoxes.item(i));
 			}
 			injectCSS(
 				"input[name='q']::-webkit-input-speech-button {" +
@@ -124,9 +132,10 @@ var init = function () {
 	} else {
 		// general solution for any site using an HTML5 input type=search
 		// field (e.g. GitHub, Wikipedia home page)
-		search = $("input[type='search']");
-		if (search) {
-			addSpeechInput(search);
+		searchBoxes = $("input[type='search']");
+		i = searchBoxes.length;
+		while (i--) {
+			addSpeechInput(searchBoxes.item(i));
 		}
 	}
 }

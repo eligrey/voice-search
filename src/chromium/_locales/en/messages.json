@@ -6,7 +6,7 @@
 	, "popup_search_engines_select":{"message":"Search Engines"}
 	, "popup_dictated_period_regex":{"message":"\\bdot\\b|\\bperiod\\b|\\bpoint\\b"}
 	
-	, "version_message":{"message":"Version 1.0.0"}
+	, "version_message":{"message":"Version 1.0.1"}
 	, "changelog":{"message":"Changelog"}
 	, "report_bug":{"message":"Report a bug"}
 	, "paypal_donate_button":{"message":"Donate with PayPal"}
