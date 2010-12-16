@@ -1,5 +1,5 @@
-Voice Search
-============
+Voice Search License
+====================
 
 Copyright &copy; 2010 [Elijah Grey][1], who also goes by [Eli Grey][1].
 
