@@ -62,8 +62,8 @@ Roadmap
 ![Tracking image](//in.getclicky.com/212712ns.gif =1x1)
 
   [1]: https://chrome.google.com/webstore/detail/hhfkcobomkalfdlmkongnhnhahkmnaad
-  [2]: https://purl.eligrey.com/github/voice-search/raw/master/screenshots/options.png
-  [3]: https://purl.eligrey.com/github/voice-search/raw/master/screenshots/popup.png
-  [4]: https://purl.eligrey.com/github/voice-search/raw/master/screenshots/google.png
-  [5]: https://purl.eligrey.com/github/voice-search/raw/master/screenshots/bing.png
-  [6]: https://purl.eligrey.com/github/voice-search/raw/master/screenshots/reddit.png
+  [2]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/options.png
+  [3]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/popup.png
+  [4]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/google.png
+  [5]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/bing.png
+  [6]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/reddit.png
