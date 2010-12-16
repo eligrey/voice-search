@@ -1,0 +1,31 @@
+{
+	  "name": "__MSG_extension_name__"
+	, "version": "1.0.0"
+	, "description": "__MSG_extension_description__"
+	, "permissions": [
+		  "chrome://favicon/"
+	]
+	, "default_locale": "en"
+	, "options_page": "views/options.html"
+	, "background_page": "views/background.xhtml"
+	, "browser_action": {
+		  "default_icon": "images/chrome-speech_input_mic_full-19.png"
+		, "default_title": "__MSG_extension_name__"
+		, "default_popup": "views/popup.xhtml"
+	}
+	, "icons": {
+		  "16": "images/chrome-speech_input_mic_full-16.png"
+		, "48": "images/chrome-speech_input_mic_full-48.png"
+		, "68": "images/chrome-speech_input_mic_full-68.png"
+		, "128": "images/chrome-speech_input_mic_full-128.png"
+	}
+	, "content_scripts": [
+		{
+			  "matches": [
+				  "<all_urls>"
+			]
+			, "js": ["js/content.js"]
+			, "run_at": "document_end"
+		}
+	]
+}

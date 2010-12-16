@@ -1,0 +1,84 @@
+@charset "utf-8";
+
+body, input {
+	font-family: Ubuntu, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+body {
+	margin: 10px;
+	margin-top: 20px;
+}
+h1 {
+	font-size: 200%;
+	font-weight: bold;
+	display: inline;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-__MSG_@@bidi_start_edge__: 60px;
+	background: url("../images/chrome-speech_input_mic_full-68.png") no-repeat;
+	background-size: 68px;
+	background-position: 0;
+}
+fieldset legend {
+	font-size: 140%;
+}
+#version {
+	float: __MSG_@@bidi_end_edge__;
+}
+#version ul {
+	list-style: none;
+}
+#version ul li {
+	display: inline-block;
+}
+#version ul li:not(:first-child)::before {
+	content: " — "
+}
+#version #donate {
+	display: inline-block;
+	margin-bottom: -5px;
+}
+#options {
+	clear: both;
+}
+/*.cell-search-engine-name {
+
+}
+.cell-search-engine-uri {
+}*/
+.reorder-cell {
+	cursor: move;
+	background: url("../lib/SlickGrid/images/drag-handle.png") no-repeat center center;
+}
+#search-engines-container {
+	width: 60em;
+}
+#search-engines {
+	width: 100%;
+	height: 23em;
+}
+#delete-search-engine {
+	float: left;
+	height: 70px;
+	background: url("../images/Andy_Trash_Can.svg") no-repeat left center;
+	background-size: 70px;
+	padding-left: 70px;
+	padding-right: 0.8em;
+	line-height: 70px;
+	border-radius: 5px;
+}
+#status {
+	color: #0e5ecf;
+}
+.slick-row.ui-state-active {
+    background: lightgray;
+}
+.actions {
+	margin-top: 1em;
+}
+fieldset {
+	margin: 6px 6px 0 6px;
+	padding: 10px 10px 10px 10px;
+	color: #333;
+	border: 1px solid #dedede;
+	border-radius: 5px 5px;
+}

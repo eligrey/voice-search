@@ -1,0 +1,57 @@
+{
+	  "extension_name":{"message":"Voice Search"}
+	, "extension_description":{"message":"Search by speaking."}
+	
+	, "popup_title":{"message":"Voice Search"}
+	, "popup_search_engines_select":{"message":"Search Engines"}
+	, "popup_dictated_period_regex":{"message":"\\bdot\\b|\\bperiod\\b|\\bpoint\\b"}
+	
+	, "version_message":{"message":"Version 1.0.0"}
+	, "changelog":{"message":"Changelog"}
+	, "report_bug":{"message":"Report a bug"}
+	, "paypal_donate_button":{"message":"Donate with PayPal"}
+	
+	, "opts_title":{"message":"Voice Search Options"}
+	, "opts_search_engines":{"message":"Search Engines"}
+	, "opts_uri_format":{"message":"Insert %s where the query should go."}
+	, "opts_default_engine":{"message":"The first search engine is the default used when searching."}
+	, "opts_delete_search_engine":{"message":"Drag search engines to the trash can to delete them."}
+	, "opts_delete_drag":{"message":"Drag to trash can to delete"}
+	, "opts_website_integration":{"message":"Website Integration"}
+	, "opts_enable_website_integration":{"message":"Add speech input buttons to search boxes on websites."}
+	, "opts_save_button":{"message":"Save"}
+	, "opts_restore_defaults_button":{"message":"Restore Defaults"}
+	, "opts_settings_saved":{"message":"Settings saved."}
+	
+	, "background_view_title":{"message":"Voice Search Background Page"}
+	
+	, "google_search_name":{"message":"Google"}
+	, "google_search_uri_template":{"message":"http://www.google.com/search?q=%s"}
+	
+	, "duckduckgo_search_name":{"message":"DuckDuckGo"}
+	, "duckduckgo_search_uri_template":{"message":"http://duckduckgo.com/?q=%s"}
+	
+	, "wikipedia_search_name":{"message":"Wikipedia"}
+	, "wikipedia_search_uri_template":{"message":"http://en.wikipedia.org/w/index.php?title=Special:Search&search=%s"}
+	
+	, "google_images_search_name":{"message":"Google Images"}
+	, "google_images_search_uri_template":{"message":"http://www.google.com/images?q=%s"}
+	
+	, "google_maps_search_name":{"message":"Google Maps"}
+	, "google_maps_search_uri_template":{"message":"http://maps.google.com/maps?q=%s"}
+	
+	, "google_videos_search_name":{"message":"Google Videos"}
+	, "google_videos_search_uri_template":{"message":"http://www.google.com/search?q=%s&tbs=vid:1"}
+	
+	, "youtube_search_name":{"message":"YouTube"}
+	, "youtube_search_uri_template":{"message":"http://www.youtube.com/results?search_query=%s"}
+	
+	, "wolframalpha_search_name":{"message":"Wolfram|Alpha"}
+	, "wolframalpha_search_uri_template":{"message":"http://www.wolframalpha.com/input/?i=%s"}
+	
+	, "bing_search_name":{"message":"Bing"}
+	, "bing_search_uri_template":{"message":"http://www.bing.com/search?q=%s"}
+	
+	, "yahoo_search_name":{"message":"Yahoo!"}
+	, "yahoo_search_uri_template":{"message":"http://search.yahoo.com/search?p=%s"}
+}

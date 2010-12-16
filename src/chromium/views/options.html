@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" data-i18n="dir=@@bidi_dir, lang=@@ui_locale">
+<!-- Unfortunately, SlickGrid/jQuery doesn't work in XHTML (hence the .html) -->
+<head>
+<meta charset="utf-8" />
+<title data-i18n="opts_title"></title>
+<link rel="icon" sizes="16x16" type="image/png" href="../images/chrome-speech_input_mic_full-16.png" />
+<link rel="stylesheet" href="../lib/SlickGrid/slick.grid.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../lib/SlickGrid/examples/slick-default-theme.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../css/options.css" charset="utf-8" />
+</head>
+<body>
+<aside id="version">
+	<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+		<input type="hidden" name="cmd" value="_s-xclick" />
+		<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----" />
+		<ul>
+			<li data-i18n="version_message"></li>
+			<li><a data-i18n="changelog" href="http://purl.eligrey.com/github/voice-search/blob/master/changelog.md"></a></li>
+			<li><a data-i18n="report_bug" href="http://purl.eligrey.com/github/voice-search/issues"></a></li>
+			<li><input data-i18n="alt=paypal_donate_button" id="donate" type="image" name="submit" alt="" src="../images/paypal-donate-button.gif" /></li>
+		</ul>
+	</form>
+</aside>
+<h1 data-i18n="opts_title"></h1>
+<form id="options">
+	<fieldset>
+		<legend data-i18n="opts_search_engines"></legend>
+		<p data-i18n="opts_default_engine"></p>
+		<p data-i18n="opts_uri_format"></p>
+		<div id="search-engines-container">
+			<div id="search-engines"></div>
+		</div>
+		<p>
+		<div id="delete-search-engine" data-i18n="opts_delete_search_engine"></div>
+	</fieldset>
+	<fieldset>
+		<legend data-i18n="opts_website_integration"></legend>
+		<input type="checkbox" id="enable-website-integration" />
+		<label for="enable-website-integration" data-i18n="opts_enable_website_integration" />
+	</fieldset>
+	<section class="actions">
+		<input type="button" id="save" data-i18n="value=opts_save_button" />
+		<input type="button" id="restore-defaults" data-i18n="value=opts_restore_defaults_button" />
+		<span id="status"></span>
+	</section>
+</form>
+<script type="application/javascript" src="../lib/chrome-i18n.js" charset="utf-8"></script>
+<script type="application/javascript" src="../js/default-options.js" charset="utf-8"></script>
+
+<script type="application/javascript" src="../lib/SlickGrid/lib/jquery-1.4.3.min.js" charset="utf-8"></script>
+<script type="application/javascript" src="../lib/SlickGrid/lib/jquery-ui-1.8.5.custom.min.js" charset="utf-8"></script>
+<script type="application/javascript" src="../lib/SlickGrid/lib/jquery.event.drag-2.0.min.js" charset="utf-8"></script>
+<script type="application/javascript" src="../lib/SlickGrid/lib/jquery.event.drop-2.0.min.js" charset="utf-8"></script>
+
+<script type="application/javascript" src="../lib/SlickGrid/slick.grid.js" charset="utf-8"></script>
+<script type="application/javascript" src="../lib/SlickGrid/slick.editors.js" charset="utf-8"></script>
+
+<script type="application/javascript" src="../js/options.js" charset="utf-8"></script>
+</body>
+</html>

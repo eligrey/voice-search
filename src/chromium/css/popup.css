@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+body {
+	margin: 0;
+	width: 59px;
+}
+#app {
+	width: 59px;
+	height: 42px;
+}
+#voice-search {
+	-webkit-appearance: none;
+	border: 0;
+	width: 40px;
+	height: 40px;
+	outline: none;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+	color: transparent;
+	position: relative;
+	top: -12px;
+}
+#voice-search::selection {
+	color: transparent;
+	background-color: transparent;
+}
+#voice-search::-webkit-input-speech-button {
+	font-size: 230%; /*31-32px or something*/
+}
+/*
+#voice-search::-webkit-search-results-button {}
+#voice-search::-webkit-search-cancel-button {}
+*/
+#search-engines {
+	width: 17px;
+	height: 42px;
+	border: none;
+	outline: none;
+}
