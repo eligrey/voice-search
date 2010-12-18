@@ -66,7 +66,7 @@
 			}
 			, {
 				  id: "name"
-				, name: "Name"
+				, name: i18n("opts_name_column")
 				, field: "name"
 				, width: 200
 				, cssClass: "cell-search-engine-name"
@@ -74,7 +74,7 @@
 			}
 			, {
 				  id: "uri"
-				, name: "URL"
+				, name: i18n("opts_uri_column")
 				, width: 500
 				, cssClass: "cell-search-engine-uri"
 				, field: "uri"
