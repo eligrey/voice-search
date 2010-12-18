@@ -13,7 +13,9 @@ search engines. It also integrates a speech input button for all websites using 
 search boxes, all of the default search engines' websites, Facebook, Twitter, reddit,
 and GitHub.
 
-If you are using Chrome 9 or higher, you may likely need to launch Chrome with the --enable-speech-input flag. To do this on Windows, right click on your Google Chrome icon (shift+right click while Chrome is closed for Windows 7 if you have it pinned to the task bar), and set the target field to `"%LocalAppData%\Google\Chrome\Application\chrome.exe" --enable-speech-input`
+If you are using Chrome 9 or higher, you may likely need to launch Chrome with the --enable-speech-input flag. To do this on Windows, right click on your Google Chrome icon (shift+right click while Chrome is closed for Windows 7 if you have it pinned to the task bar), and set the target field to the following:
+
+    %LocalAppData%\Google\Chrome\Application\chrome.exe --enable-speech-input
 
 
 Screenshots
