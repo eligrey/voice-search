@@ -13,7 +13,10 @@ search engines. It also integrates a speech input button for all websites using 
 search boxes, all of the default search engines' websites, Facebook, Twitter, reddit,
 and GitHub.
 
-If you are using Chrome 9 or higher, you may likely need to launch Chrome with the --enable-speech-input flag. To do this on Windows, right click on your Google Chrome icon (shift+right click while Chrome is closed for Windows 7 if you have it pinned to the task bar), and set the target field to the following:
+If you are using Chrome 9 or higher, you may likely need to launch Chrome with the
+`--enable-speech-input` flag. To do this on Windows, right click on your Google Chrome
+icon (<kbd>Shift</kbd>+<kbd>right click</kbd> while Chrome is closed for Windows 7 if you
+have it pinned to the task bar), and set the target field to the following value:
 
     %LocalAppData%\Google\Chrome\Application\chrome.exe --enable-speech-input
 
@@ -21,8 +24,8 @@ If you are using Chrome 9 or higher, you may likely need to launch Chrome with t
 Screenshots
 -----------
 
-* [Options page][2]
-* [Voice Search popup][3]
+* [Voice Search popup][2]
+* [Options page][3]
 * [Google][4]
 * [Bing][5]
 * [reddit][6]
@@ -66,8 +69,8 @@ Roadmap
 ![Tracking image](//in.getclicky.com/212712ns.gif =1x1)
 
   [1]: https://chrome.google.com/webstore/detail/hhfkcobomkalfdlmkongnhnhahkmnaad
-  [2]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/options.png
-  [3]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/popup.png
+  [2]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/popup.png
+  [3]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/options.png
   [4]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/google.png
   [5]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/bing.png
   [6]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/reddit.png
