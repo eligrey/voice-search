@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" data-i18n="dir=@@bidi_dir, lang=@@ui_locale">
+<head>
+<meta charset="utf-8"/>
+<title data-i18n="popup_title"/>
+<link rel="icon" sizes="16x16" type="image/png" href="../images/chrome-speech_input_mic_full-16.png"/>
+<link rel="stylesheet" type="text/css" href="../css/popup-debug.css" charset="utf-8"/>
+</head>
+<body>
+<form id="debug">
+<div><input id="voice-search" type="search" x-webkit-speech="" speech=""/></div>
+<div><select id="search-engines">
+	<option selected="" disabled="" data-i18n="popup_search_engines_select"/>
+</select></div>
+<div><input id="test-query" type="submit" data-i18n="value=popup_debug_test_query"/></div>
+<table id="debug-results">
+	<tr>
+		<th data-i18n="popup_debug_engine_name"/>
+		<td id="debug-engine-name"/>
+	</tr>
+	<tr>
+		<th data-i18n="popup_debug_query"/>
+		<td id="debug-query"/>
+	</tr>
+	<tr>
+		<th data-i18n="popup_debug_uri"/>
+		<td id="debug-uri"/>
+	</tr>
+</table>
+</form>
+<script type="application/javascript" src="../lib/chrome-i18n.js" charset="utf-8"/>
+<script type="application/javascript" src="../js/default-options.js" charset="utf-8"/>
+<script type="application/javascript" src="../js/popup.js" charset="utf-8"/>
+</body>
+</html>

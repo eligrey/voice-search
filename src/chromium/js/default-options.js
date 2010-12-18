@@ -10,6 +10,7 @@
 "use strict";
 
 if (!localStorage.length) {
+	localStorage.debug = 0;
 	localStorage.searchEngines = JSON.stringify([
 		  {
 			  "name": i18n("google_search_name")

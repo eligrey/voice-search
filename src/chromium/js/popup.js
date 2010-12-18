@@ -5,8 +5,15 @@
  */
 
 /*jslint laxbreak: true, strict: true*/
-/*global localStorage, document, open, Option*/
- 
+/*global localStorage, location, document, open, Option*/
+
+// manually set localStorage.debug to "1" in the console to enable debug mode
+const DEBUG = !!+localStorage.debug;
+
+if (DEBUG && location.pathname !== "/views/popup-debug.xhtml") {
+	location.replace("/views/popup-debug.xhtml");
+}
+
 "use strict";
 
 (function () {
@@ -16,7 +23,7 @@ var
 	, $ = function (id) {
 		return doc.getElementById(id);
 	}
-	, openSearchQuery = function (query, templateURI) {
+	, openSearchQuery = function (name, query, templateURI) {
 		open(templateURI.replace("%s", encodeURIComponent(query)));
 	}
 	, voiceSearch = $("voice-search")
@@ -26,22 +33,70 @@ var
 	, searchEngines = JSON.parse(opts.searchEngines)
 	, searchEngineRegexs = []
 	, periods = /\./g
-	, punctuation = /[.,"'?!;:#$%&()*+-\/<>=@\[\]\\\^_{}\|~]+/g
+	, dashes = /-/g
+	, punctuation = /[,"'?!;:#$%&()*+\/<>=@\[\]\\\^_{}\|~.\-]+/g
 	, whitespace = /\s+/g
 	, midWordCapitalization = /([a-z])([A-Z])/g
-	, dictatedPeriod = i18n("popup_dictated_period_regex")
+	, dictatedPeriod = i18n("dictated_period_regex")
+	, dictatedDash = i18n("dictated_dash_regex")
 	, searchEngineRegex
 	, i = 0
 	, len = searchEngines.length
+	, onSpeechChange = function (event) {
+		var
+			  query = event.target.value // event.target.results.item(0).utterance
+			, selected = searchEngineSelect.selectedIndex
+		;
+		if (!DEBUG) {
+			// hide any text from showing behind the voice input button
+			event.target.value = "";
+		}
+		if (!selected) {
+			// attempt to discern a dictation to use a specific search engine
+			var
+				  specificSearchEngineQuery
+				, i = searchEngines.length
+				// longest matching search engine detected
+				// for cases like 'google: videos foobar' vs 'google videos: foobar'
+				, bestMatch = {matched: false}
+			;
+			while (i--) {
+				if ((specificSearchEngineQuery = query.match(searchEngineRegexs[i]))) {
+					if (!bestMatch.matched ||
+						bestMatch.name.length < searchEngines[i].name.length
+					) {
+						bestMatch.matched = true;
+						bestMatch.name = searchEngines[i].name;
+						bestMatch.uri = searchEngines[i].uri;
+						bestMatch.query = specificSearchEngineQuery[2];
+					}
+				}
+			}
+			if (bestMatch.matched) {
+				openSearchQuery(bestMatch.name, bestMatch.query, bestMatch.uri);
+			} else {
+				// otherwise use the default search engine
+				openSearchQuery(
+					  searchEngineSelect.children.item(1).firstChild.data
+					, query
+					, searchEngineSelect.children.item(1).value
+				);
+			}
+		} else {
+			openSearchQuery(
+				  searchEngineSelect.children.item(selected).firstChild.data
+				, query
+				, searchEngineSelect.value
+			);
+		}
+	}
 ;
 for (; i < len; i++) {
 	// make regexps for matching commands dictated for a certain search engine
 	searchEngineRegex = "^(" +
 		searchEngines[i].name
-			// other punctuation optional
+			// punctuation optional
 			.replace(punctuation, "\\W*")
-			// periods pronounced as "dot" optional
-			.replace(periods, "(?:" + dictatedPeriod + "|\\.|\\s*)")
 			// whitespace optional
 			.replace(whitespace, "\\s*")
 			// allow possible spaces from capitalization (e.g. YouTube ~ You Tube)
@@ -56,38 +111,26 @@ for (i = 0, len = searchEngines.length; i < len; i++) {
 		searchEngines[i].name, searchEngines[i].uri
 	));
 }
-voiceSearch.addEventListener(speechChangeEvent, function (event) {
-	var query = event.target.value; // event.target.results.item(0).utterance
-	event.target.value = ""; // hide any text from showing behind the voice input button
-	if (!searchEngineSelect.selectedIndex) {
-		// attempt to discern a dictation to use a specific search engine
-		var
-			  specificSearchEngineQuery
-			, i = searchEngines.length
-			// longest matching search engine detected
-			// for cases like 'google: videos foobar' vs 'google videos: foobar'
-			, bestMatch = {matched: false}
-		;
-		while (i--) {
-			if ((specificSearchEngineQuery = query.match(searchEngineRegexs[i]))) {
-				if (!bestMatch.matched ||
-					bestMatch.name.length < searchEngines[i].name.length
-				) {
-					bestMatch.matched = true;
-					bestMatch.name = searchEngines[i].name;
-					bestMatch.uri = searchEngines[i].uri;
-					bestMatch.query = specificSearchEngineQuery[2];
-				}
-			}
-		}
-		if (bestMatch.matched) {
-			openSearchQuery(bestMatch.query, bestMatch.uri);
-		} else {
-			// otherwise use the default search engine
-			openSearchQuery(query, searchEngineSelect.children.item(1).value);
-		}
-	} else {
-		openSearchQuery(query, searchEngineSelect.value);
-	}
-}, false);
+if (DEBUG) {
+	var
+		  form = $("debug")
+		, testQueryBtn = $("test-query")
+		, debugEngineName = $("debug-engine-name").appendChild(doc.createTextNode(""))
+		, debugQuery = $("debug-query").appendChild(doc.createTextNode(""))
+		, debugURI = $("debug-uri").appendChild(doc.createTextNode(""))
+	;
+	openSearchQuery = function (name, query, templateURI) {
+		debugEngineName.data = name;
+		debugQuery.data = query;
+		debugURI.data = templateURI.replace("%s", encodeURIComponent(query));
+	};
+	form.addEventListener("submit", function (event) {
+		event.preventDefault();
+	}, false);
+	testQueryBtn.addEventListener("DOMActivate", function () {
+		onSpeechChange({target: voiceSearch});
+	}, false);
+} else {
+	voiceSearch.addEventListener(speechChangeEvent, onSpeechChange, false);
+}
 }());

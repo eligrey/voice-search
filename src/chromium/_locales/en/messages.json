@@ -2,14 +2,17 @@
 	  "extension_name":{"message":"Voice Search"}
 	, "extension_description":{"message":"Search by speaking."}
 	
-	, "popup_title":{"message":"Voice Search"}
-	, "popup_search_engines_select":{"message":"Search Engines"}
-	, "popup_dictated_period_regex":{"message":"\\bdot\\b|\\bperiod\\b|\\bpoint\\b"}
-	
-	, "version_message":{"message":"Version 1.0.1"}
+	, "version_message":{"message":"Version 1.0.2"}
 	, "changelog":{"message":"Changelog"}
 	, "report_bug":{"message":"Report a bug"}
 	, "paypal_donate_button":{"message":"Donate with PayPal"}
+	
+	, "popup_title":{"message":"Voice Search"}
+	, "popup_search_engines_select":{"message":"Search Engines"}
+	, "popup_debug_test_query":{"message":"Test"}
+	, "popup_debug_engine_name":{"message":"Search Engine:"}
+	, "popup_debug_query":{"message":"Query:"}
+	, "popup_debug_uri":{"message":"URI:"}
 	
 	, "opts_title":{"message":"Voice Search Options"}
 	, "opts_search_engines":{"message":"Search Engines"}
@@ -22,6 +25,8 @@
 	, "opts_save_button":{"message":"Save"}
 	, "opts_restore_defaults_button":{"message":"Restore Defaults"}
 	, "opts_settings_saved":{"message":"Settings saved."}
+	, "opts_name_column":{"message":"Name"}
+	, "opts_uri_column":{"message":"URL"}
 	
 	, "background_view_title":{"message":"Voice Search Background Page"}
 	
