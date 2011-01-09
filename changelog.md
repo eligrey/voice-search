@@ -1,6 +1,15 @@
 Voice Search Changelog
 ======================
 
+1.0.3
+-----
+
+* Added OSX instructions to README.
+* Updated Twitter search box margin in content script for a change in Twitter.
+* Now using `chrome.tabs.create()` instead of `open()`.
+* Removed extra copy of a microphone image.
+
+
 1.0.2
 -----
 

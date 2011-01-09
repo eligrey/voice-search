@@ -24,7 +24,10 @@ var
 		return doc.getElementById(id);
 	}
 	, openSearchQuery = function (name, query, templateURI) {
-		open(templateURI.replace("%s", encodeURIComponent(query)));
+		chrome.tabs.create({
+			  url: templateURI.replace("%s", encodeURIComponent(query))
+			, selected: true
+		});
 	}
 	, voiceSearch = $("voice-search")
 	, searchEngineSelect = $("search-engines")

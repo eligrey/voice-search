@@ -10,15 +10,24 @@ images</strong> kittens</q>. Want to learn more about World War II? Say
 Voice Search comes pre-loaded with the following default services: Google, Wikipedia,
 YouTube, Bing, Yahoo, DuckDuckGo and Wolfram|Alpha. You can also add your own user-defined
 search engines. It also integrates a speech input button for all websites using HTML5
-search boxes, all of the default search engines' websites, Facebook, Twitter, reddit,
-and GitHub.
+search boxes, all of the default search engines' websites, Facebook, Twitter, reddit, and
+GitHub.
+
+This extension requires a microphone. Speech input is very experimental, so don't be
+surprised if it doesn't work. Also, try to speak clearly for best speech recognition
+results.
 
 If you are using Chrome 9 or higher, you may likely need to launch Chrome with the
-`--enable-speech-input` flag. To do this on Windows, right click on your Google Chrome
-icon (<kbd>Shift</kbd>+<kbd>right click</kbd> while Chrome is closed for Windows 7 if you
-have it pinned to the task bar), and set the target field to the following value:
+`--enable-speech-input` launch flag. To do this on Windows, right click on your Google
+Chrome icon (<kbd>shift</kbd>+right click while Chrome is closed for Windows 7 if you have
+it pinned to the task bar), and set the target field to the following value:
 
     %LocalAppData%\Google\Chrome\Application\chrome.exe --enable-speech-input
+
+In OSX, it's a little more complicated. You have to create an Apple Script with the
+following code and save it in ~/Applications/
+
+    do shell script "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --enable-speech-input"
 
 
 Screenshots

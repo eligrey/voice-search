@@ -54,7 +54,7 @@ var init = function () {
 			, {host: "wolframalpha.com", selectors: "#i"}
 			, {host: "github.com", allowedPaths: "/search", selectors:"#search_form input[name='q']", margin: "3px 0 0 0"}
 			, {host: "reddit.com", selectors: "input[name='q']", margin: "3px 0 0 0"}
-			, {host: "twitter.com", excludedSubdomains: "search", selectors: "#search-query", margin: "5px 1.4em 0 0"}
+			, {host: "twitter.com", excludedSubdomains: "search", selectors: "#search-query", margin: "5px 0 0 0"}
 			, {host: "facebook.com", selectors: "#q", margin: "2px 0 0 0"}
 			, {host: "youtube.com", selectors: "#masthead-search-term", margin:"3px 0 0 0"}
 		]
@@ -114,9 +114,9 @@ var init = function () {
 				(googlePath = supportedGooglePaths.indexOf(path.slice(1))) !== -1
 			)
 		) {
-			if (googleSubdomain === 5) {
+			if (googleSubdomain === 5) { // news
 				topMargin = 5;
-			} else if (googlePath === 8) {
+			} else if (googlePath === 8) { // finance
 				topMargin = 4;
 			}
 			while (i--) {
