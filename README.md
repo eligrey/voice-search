@@ -17,10 +17,10 @@ This extension requires a microphone. Speech input is very experimental, so don'
 surprised if it doesn't work. Also, try to speak clearly for best speech recognition
 results.
 
-If you are using Chrome 9 or higher, you may likely need to launch Chrome with the
-`--enable-speech-input` launch flag. To do this on Windows, right click on your Google
-Chrome icon (<kbd>shift</kbd>+right click while Chrome is closed for Windows 7 if you have
-it pinned to the task bar), and set the target field to the following value:
+You may need to launch Chrome with the `--enable-speech-input` launch flag. To do this on
+Windows, right click on your Google Chrome icon (<kbd>shift</kbd>+right click while
+Chrome is closed for Windows 7 if you have it pinned to the task bar), and set the target
+field to the following value:
 
     %LocalAppData%\Google\Chrome\Application\chrome.exe --enable-speech-input
 
