@@ -12,13 +12,13 @@
 if (!localStorage.length) {
 	localStorage.debug = 0;
 	localStorage.searchEngines = JSON.stringify([
-		  {
-			  "name": i18n("google_search_name")
-			, "uri": i18n("google_search_uri_template")
-		}
-		, {
+		 {
 			  "name": i18n("duckduckgo_search_name")
 			, "uri": i18n("duckduckgo_search_uri_template")
+		}
+		, {
+			  "name": i18n("google_search_name")
+			, "uri": i18n("google_search_uri_template")
 		}
 		, {
 			  "name": i18n("wikipedia_search_name")

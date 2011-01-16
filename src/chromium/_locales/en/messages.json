@@ -29,15 +29,15 @@
 	, "opts_uri_column":{"message":"URL"}
 	
 	, "background_view_title":{"message":"Voice Search Background Page"}
-	
-	, "google_search_name":{"message":"Google"}
-	, "google_search_uri_template":{"message":"http://www.google.com/search?q=%s"}
-	
+		
 	, "duckduckgo_search_name":{"message":"DuckDuckGo"}
 	, "duckduckgo_search_uri_template":{"message":"http://duckduckgo.com/?q=%s"}
 	
 	, "wikipedia_search_name":{"message":"Wikipedia"}
 	, "wikipedia_search_uri_template":{"message":"http://en.wikipedia.org/w/index.php?title=Special:Search&search=%s"}
+	
+	, "google_search_name":{"message":"Google"}
+	, "google_search_uri_template":{"message":"http://www.google.com/search?q=%s"}
 	
 	, "google_images_search_name":{"message":"Google Images"}
 	, "google_images_search_uri_template":{"message":"http://www.google.com/images?q=%s"}

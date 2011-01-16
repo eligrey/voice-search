@@ -9,15 +9,15 @@
 	, "options_page": "views/options.html"
 	, "background_page": "views/background.xhtml"
 	, "browser_action": {
-		  "default_icon": "images/chrome-speech_input_mic_full-19.png"
+		  "default_icon": "images/chromium-speech_input_mic_full-19.png"
 		, "default_title": "__MSG_popup_title__"
 		, "default_popup": "views/popup.xhtml"
 	}
 	, "icons": {
-		  "16": "images/chrome-speech_input_mic_full-16.png"
-		, "48": "images/chrome-speech_input_mic_full-48.png"
-		, "68": "images/chrome-speech_input_mic_full-68.png"
-		, "128": "images/chrome-speech_input_mic_full-128.png"
+		  "16": "images/chromium-speech_input_mic_full-16.png"
+		, "48": "images/chromium-speech_input_mic_full-48.png"
+		, "68": "images/chromium-speech_input_mic_full-68.png"
+		, "128": "images/chromium-speech_input_mic_full-128.png"
 	}
 	, "content_scripts": [
 		{
