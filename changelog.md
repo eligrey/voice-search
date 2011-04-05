@@ -1,6 +1,14 @@
 Voice Search Changelog
 ======================
 
+1.0.5
+-----
+
+* Fixed the speech input microphone position on integrated websites.
+* Now replacing every instance of `%s` in search engine URL templates.
+* Updated the donation link on the options page to use WePay instead of PayPal.
+* Updated Chromium DOM i18n (chromium-i18n.js).
+
 1.0.4
 -----
 

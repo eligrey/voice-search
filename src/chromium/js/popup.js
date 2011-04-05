@@ -1,11 +1,11 @@
-/*! Voice Search Google Chrome Extension
+/*! Voice Search Chromium Extension
  *
  *  By Eli Grey, http://eligrey.com
  *  License: MIT/X11. See LICENSE.md
  */
 
 /*jslint laxbreak: true, strict: true*/
-/*global localStorage, location, document, open, Option*/
+/*global localStorage, location, document, Option*/
 
 // manually set localStorage.debug to "1" in the console to enable debug mode
 const DEBUG = !!+localStorage.debug;
@@ -125,7 +125,7 @@ if (DEBUG) {
 	openSearchQuery = function (name, query, templateURI) {
 		debugEngineName.data = name;
 		debugQuery.data = query;
-		debugURI.data = templateURI.replace("%s", encodeURIComponent(query));
+		debugURI.data = templateURI.replace(/%s/g, encodeURIComponent(query));
 	};
 	form.addEventListener("submit", function (event) {
 		event.preventDefault();

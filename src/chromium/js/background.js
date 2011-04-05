@@ -1,4 +1,4 @@
-/*! Voice Search Google Chrome Extension
+/*! Voice Search Chromium Extension
  *
  *  By Eli Grey, http://eligrey.com
  *  License: MIT/X11. See LICENSE.md

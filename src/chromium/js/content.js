@@ -1,4 +1,4 @@
-/*! Voice Search Google Chrome Extension
+/*! Voice Search Chromium Extension
  *
  *  By Eli Grey, http://eligrey.com
  *  License: MIT/X11. See LICENSE.md
@@ -13,14 +13,15 @@
 
 var init = function () {
 	var
-		  host = location.hostname.split(".").slice(-2).join(".")
-		, subdomain = location.hostname.split(".")[0]
-		, path = location.pathname
+		  full_host = location.hostname
+		, host = full_host.split(".").slice(-2).join(".")
+		, subdomain = full_host.split(".")[0]
+		, path = location.pathname.slice(1)
 		, doc = document
 		, $ = function (query) {
 			return doc.querySelectorAll(query);
 		}
-		, injectCSS = function () {
+		, inject_CSS = function () {
 			var
 				  style = doc.createElement("style")
 				, rules = arguments
@@ -33,122 +34,82 @@ var init = function () {
 		, submit = function (event) {
 			event.target.form.submit();
 		}
-		, addSpeechInput = function (elt) {
+		, add_speech_input = function (elt) {
 			elt.addEventListener((elt.onspeechchange === null ? "" : "webkit")
 				+ "speechchange", submit, false);
 			elt.setAttribute("x-webkit-speech", "");
 			elt.setAttribute("speech", "");
 		}
-		, searchBoxes
+		, search_boxes
 		// Google TLDs list from http://www.thomasbindl.com/blog/?title=list_of_googel_tlds
-		, googleTLDs = "com de at pl fr nl it com.tr es ch be gr com.br lu fi pt hu hr bg com.mx si sk ro ca co.uk cl com.ar se cz dk co.th com.co lt co.id co.in co.il com.eg cn co.ve ru co.jp com.pe com.au co.ma co.za com.ph com.sa ie co.kr no com.ec com.vn lv com.mt com.uy ae ba co.nz com.ua co.cr ee com.do com.tw com.hk com.my com.sv com.pr lk com.gt com.bd com.pk is li com.bh com.ni com.py com.ng com.bo co.ke hn com.sg mu ci jo nu com.jm com.ly co.yu tt com.kh ge com.na com.et sm cd gm com.qa dj com.cu com.pa gp az as pl mn ht md am sn je com.bn com.ai co.zm ma rw co.ug com.vc com at com.gi to com.om kz co.uz"
+		, google_TLDs = "com de at pl fr nl it com.tr es ch be gr com.br lu fi pt hu hr bg com.mx si sk ro ca co.uk cl com.ar se cz dk co.th com.co lt co.id co.in co.il com.eg cn co.ve ru co.jp com.pe com.au co.ma co.za com.ph com.sa ie co.kr no com.ec com.vn lv com.mt com.uy ae ba co.nz com.ua co.cr ee com.do com.tw com.hk com.my com.sv com.pr lk com.gt com.bd com.pk is li com.bh com.ni com.py com.ng com.bo co.ke hn com.sg mu ci jo nu com.jm com.ly co.yu tt com.kh ge com.na com.et sm cd gm com.qa dj com.cu com.pa gp az as pl mn ht md am sn je com.bn com.ai co.zm ma rw co.ug com.vc com at com.gi to com.om kz co.uz"
 			.replace(/\./g, "\\.").split(" ")
-		, supportedGoogleSubdomains = "www encrypted code video maps news books scholar blogsearch".split(" ")
-		, supportedGooglePaths = " webhp search maps imghp news prdhp bkshp finance schhp realtime".split(" ")
-		, googleHostRegex = new RegExp("(?:" + supportedGoogleSubdomains.join("|") + ")+\.google\\.(?:" + googleTLDs.join("|") + ")$")
-		, simpleCases = [
-			  {host: "duckduckgo.com", selectors: ["#hfih", "#hfi"], margin: "6px 0 0 0"}
-			, {host: "bing.com", selectors: "input[name='q']", margin: "2px 0 0 0"}
-			, {host: "yahoo.com", selectors: "input[name='p']", margin: "4px 0 0 0"}
-			, {host: "wikpedia.org", excludedPaths: "/", selectors: "#searchInput", margin: "3px 0 0 0"}
+		, supported_google_subdomains = "www encrypted code video maps news books scholar blogsearch".split(" ")
+		, google_hosts = new RegExp("(?:" + supported_google_subdomains.join("|") + ")+\.google\\.(?:" + google_TLDs.join("|") + ")$")
+		, sites = [
+			  {host: google_hosts, selectors: "input[name='q']"}
+			, {host: "duckduckgo.com", selectors: ["#hfih", "#hfi"], margin: "2px 0 0 0"}
+			, {host: "bing.com", selectors: "input[name='q']"}
+			, {host: "yahoo.com", selectors: "input[name='p']"}
+			, {host: "wikipedia.org", selectors: "input[name='search']"}
 			, {host: "wolframalpha.com", selectors: "#i"}
-			, {host: "github.com", allowedPaths: "/search", selectors:"#search_form input[name='q']", margin: "3px 0 0 0"}
+			, {host: "github.com", selectors: "#search_form input[name='q']"}
 			, {host: "reddit.com", selectors: "input[name='q']", margin: "3px 0 0 0"}
-			, {host: "twitter.com", excludedSubdomains: "search", selectors: "#search-query", margin: "5px 0 0 0"}
-			, {host: "facebook.com", selectors: "#q", margin: "2px 0 0 0"}
-			, {host: "youtube.com", selectors: "#masthead-search-term", margin:"3px 0 0 0"}
+			, {host: "twitter.com", selectors: "#search-query", margin: "0 25px 0 0"}
+			, {host: "facebook.com", selectors: "#q"}
+			, {host: "youtube.com", selectors: "#masthead-search-term"}
 		]
-		, i = simpleCases.length
+		, i = sites.length
 		, j
-		, arr = function (maybeArray) {
-			return [].concat(maybeArray);
+		, arr = function (maybe_array) {
+			return [].concat(maybe_array);
 		}
-		, filter
 		, selectors
 		, css
 	;
-	// process simple cases
+	// process non-HTML5 input type=search sites
 	while (i--) {
-		if (host === simpleCases[i].host) {
-			if ( // apply filters
-				(simpleCases[i].excludedSubdomains &&
-					((filter = arr(simpleCases[i].excludedSubdomains))[0] && filter.indexOf(subdomain) !== -1)) ||
-				(simpleCases[i].allowedSubdomains &&
-					((filter = arr(simpleCases[i].allowedSubdomains))[0] && filter.indexOf(subdomain) === -1)) ||
-				(simpleCases[i].excludedPaths &&
-					((filter = arr(simpleCases[i].excludedPaths))[0] && filter.indexOf(path) !== -1)) ||
-				(simpleCases[i].allowedPaths &&
-					((filter = arr(simpleCases[i].allowedPaths))[0] && filter.indexOf(path) === -1))
-			) {
-					break;
-			}
-			selectors = arr(simpleCases[i].selectors);
-			searchBoxes = $(selectors.join(", "));
-			j = searchBoxes.length;
+		if (
+			   (typeof sites[i].host === "string" && host === sites[i].host)
+			|| (sites[i].host instanceof RegExp && sites[i].host.test(full_host))
+		) {
+			selectors = arr(sites[i].selectors);
+			search_boxes = $(selectors.join(", "));
+			console.log(selectors, search_boxes);
+			j = search_boxes.length;
 			if (j) {
 				while (j--) {
-					addSpeechInput(searchBoxes.item(j));
+					add_speech_input(search_boxes.item(j));
 				}
-				css = selectors.join("::-webkit-input-speech-button, ") + "::-webkit-input-speech-button {" +
-					"float: right;";
-				if (simpleCases[i].margin) {
-					css += "margin: " + simpleCases[i].margin + ";";
+				css = selectors.join("::-webkit-input-speech-button, ") + "::-webkit-input-speech-button {" //+
+				//	"float: right;";
+				if (sites[i].margin) {
+					css += "margin: " + sites[i].margin + ";";
 				}
 				css += "}";
-				injectCSS(css);
+				inject_CSS(css);
 			}
 			break;
 		}
 	}
-	if (googleHostRegex.test(location.hostname)) {
-		searchBoxes = $("input[name='q']");
-		var
-			  googleSubdomain
-			, googlePath
-			, topMargin = 2
-		;
-		i = searchBoxes.length;
-		// code.google.com has consistent search boxes on every page
-		if (i && subdomain === "code" || (
-				(googleSubdomain = supportedGoogleSubdomains.indexOf(subdomain)) !== -1 &&
-				(googlePath = supportedGooglePaths.indexOf(path.slice(1))) !== -1
-			)
-		) {
-			if (googleSubdomain === 5) { // news
-				topMargin = 5;
-			} else if (googlePath === 8) { // finance
-				topMargin = 4;
-			}
-			while (i--) {
-				addSpeechInput(searchBoxes.item(i));
-			}
-			injectCSS(
-				"input[name='q']::-webkit-input-speech-button {" +
-					"float: right;" +
-					"margin-top: " + topMargin + "px;" +
-				"}"
-			);
-		}
-	} else {
-		// general solution for any site using an HTML5 input type=search
-		// field (e.g. GitHub, Wikipedia home page)
-		searchBoxes = $("input[type='search']");
-		i = searchBoxes.length;
-		while (i--) {
-			addSpeechInput(searchBoxes.item(i));
-		}
+	// general solution for any site using an HTML5 input type=search
+	// fields (e.g. GitHub, Wikipedia home page)
+	search_boxes = $("input[type='search']");
+	i = search_boxes.length;
+	while (i--) {
+		add_speech_input(search_boxes.item(i));
 	}
 }
 
 , port = chrome.extension.connect({name: chrome.extension.getURL("")})
-, initListener = function (contentScriptEnabled) {
-	port.onMessage.removeListener(initListener);
-	if (contentScriptEnabled) {
+, init_listener = function (content_script_enabled) {
+	port.onMessage.removeListener(init_listener);
+	if (content_script_enabled) {
 		init();
 	}
 }
 ;
 
-port.onMessage.addListener(initListener);
+port.onMessage.addListener(init_listener);
 
 }());

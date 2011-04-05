@@ -2,10 +2,10 @@
 	  "extension_name":{"message":"Voice Search"}
 	, "extension_description":{"message":"Search by speaking."}
 	
-	, "version_message":{"message":"Version 1.0.4"}
+	, "version_message":{"message":"Version 1.0.5"}
 	, "changelog":{"message":"Changelog"}
 	, "report_bug":{"message":"Report a bug"}
-	, "paypal_donate_button":{"message":"Donate with PayPal"}
+	, "donate":{"message":"Donate"}
 	
 	, "popup_title":{"message":"Voice Search"}
 	, "popup_search_engines_select":{"message":"Search Engines"}
