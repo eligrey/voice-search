@@ -10,6 +10,7 @@ body {
 }
 #voice-search {
 	-webkit-appearance: none;
+	appearance: normal;
 	border: 0;
 	width: 40px;
 	height: 40px;

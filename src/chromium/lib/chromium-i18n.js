@@ -6,16 +6,16 @@
  * NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
  */
 
-/*global self */
+/*jslint laxbreak: true, strict: true*/
+/*global self, chrome, document*/
 
-"use strict";
-(function (view) {
+(function (document) {
+	"use strict";
 	var
-		i18n = view.i18n = function (key) {
-			return view.chrome.i18n.getMessage(key);
+		i18n = self.i18n = function (key) {
+			return chrome.i18n.getMessage(key);
 		}
-		, doc = view.document
-		, localeText = doc.querySelectorAll("[data-i18n]")
+		, localeText = document.querySelectorAll("[data-i18n]")
 		, i = localeText.length
 		, j
 		, elt
@@ -41,10 +41,10 @@
 					child = +term[0];
 				}
 				elt.insertBefore(
-					  doc.createTextNode(i18n(term[term.length - 1]))
+					  document.createTextNode(i18n(term[term.length - 1]))
 					, elt.children.item(child - 1)
 				);
 			}
 		}
 	}
-}(self));
+}(document));

@@ -9,9 +9,7 @@ images</strong> kittens</q>. Want to learn more about World War II? Say
 
 Voice Search comes pre-loaded with the following default services: Google, Wikipedia,
 YouTube, Bing, Yahoo, DuckDuckGo and Wolfram|Alpha. You can also add your own user-defined
-search engines. It also integrates a speech input button for all websites using HTML5
-search boxes, all of the default search engines' websites, Facebook, Twitter, reddit, and
-GitHub.
+search engines. It also integrates speech input buttons for text fields on all websites.
 
 This extension requires a microphone. Speech input is very experimental, so don't be
 surprised if it doesn't work. Also, try to speak clearly for best speech recognition

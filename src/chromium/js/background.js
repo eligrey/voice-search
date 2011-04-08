@@ -11,6 +11,6 @@
 
 chrome.extension.onConnect.addListener(function (port) {
 	if (port.name === chrome.extension.getURL("")) {
-		port.postMessage(!!+localStorage.websiteIntegration);
+		port.postMessage(localStorage.website_integration);
 	}
 });

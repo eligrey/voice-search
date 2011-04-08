@@ -5,7 +5,7 @@
  */
 
 /*jslint laxbreak: true, strict: true*/
-/*global localStorage, location, document, Option*/
+/*global i18n, chrome, localStorage, location, document, Option*/
 
 // manually set localStorage.debug to "1" in the console to enable debug mode
 const DEBUG = !!+localStorage.debug;
@@ -14,41 +14,35 @@ if (DEBUG && location.pathname !== "/views/popup-debug.xhtml") {
 	location.replace("/views/popup-debug.xhtml");
 }
 
+(function (document) {
 "use strict";
-
-(function () {
 var
 	  opts = localStorage
-	, doc = document
 	, $ = function (id) {
-		return doc.getElementById(id);
+		return document.getElementById(id);
 	}
-	, openSearchQuery = function (name, query, templateURI) {
+	, open_search_query = function (name, query, templateURI) {
 		chrome.tabs.create({
 			  url: templateURI.replace("%s", encodeURIComponent(query))
 			, selected: true
 		});
 	}
-	, voiceSearch = $("voice-search")
-	, searchEngineSelect = $("search-engines")
-	, speechChangeEvent = (voiceSearch.onspeechchange === null ? "" : "webkit")
+	, voice_search_input = $("voice-search")
+	, search_engine_select = $("search-engines")
+	, speech_change_event = ("onspeechchange" in document.createElement("input") ? "" : "webkit")
 		+ "speechchange"
-	, searchEngines = JSON.parse(opts.searchEngines)
-	, searchEngineRegexs = []
-	, periods = /\./g
-	, dashes = /-/g
+	, search_engines = JSON.parse(opts.search_engines)
+	, search_engine_regexs = []
 	, punctuation = /[,"'?!;:#$%&()*+\/<>=@\[\]\\\^_{}\|~.\-]+/g
 	, whitespace = /\s+/g
-	, midWordCapitalization = /([a-z])([A-Z])/g
-	, dictatedPeriod = i18n("dictated_period_regex")
-	, dictatedDash = i18n("dictated_dash_regex")
-	, searchEngineRegex
+	, mid_word_capitalization = /([a-z])([A-Z])/g
+	, search_engine_regex
 	, i = 0
-	, len = searchEngines.length
-	, onSpeechChange = function (event) {
+	, len = search_engines.length
+	, on_speech_change = function (event) {
 		var
-			  query = event.target.value // event.target.results.item(0).utterance
-			, selected = searchEngineSelect.selectedIndex
+			  query = event.results.item(0).utterance
+			, selected = search_engine_select.selectedIndex
 		;
 		if (!DEBUG) {
 			// hide any text from showing behind the voice input button
@@ -57,83 +51,84 @@ var
 		if (!selected) {
 			// attempt to discern a dictation to use a specific search engine
 			var
-				  specificSearchEngineQuery
-				, i = searchEngines.length
+				  specific_search_engine_query
+				, i = search_engines.length
 				// longest matching search engine detected
 				// for cases like 'google: videos foobar' vs 'google videos: foobar'
-				, bestMatch = {matched: false}
+				, best_match = {matched: false}
 			;
 			while (i--) {
-				if ((specificSearchEngineQuery = query.match(searchEngineRegexs[i]))) {
-					if (!bestMatch.matched ||
-						bestMatch.name.length < searchEngines[i].name.length
+				specific_search_engine_query = query.match(search_engine_regexs[i]);
+				if (specific_search_engine_query !== null) {
+					if (!best_match.matched ||
+						best_match.name.length < search_engines[i].name.length
 					) {
-						bestMatch.matched = true;
-						bestMatch.name = searchEngines[i].name;
-						bestMatch.uri = searchEngines[i].uri;
-						bestMatch.query = specificSearchEngineQuery[2];
+						best_match.matched = true;
+						best_match.name = search_engines[i].name;
+						best_match.uri = search_engines[i].uri;
+						best_match.query = specific_search_engine_query[2];
 					}
 				}
 			}
-			if (bestMatch.matched) {
-				openSearchQuery(bestMatch.name, bestMatch.query, bestMatch.uri);
+			if (best_match.matched) {
+				open_search_query(best_match.name, best_match.query, best_match.uri);
 			} else {
 				// otherwise use the default search engine
-				openSearchQuery(
-					  searchEngineSelect.children.item(1).firstChild.data
+				open_search_query(
+					  search_engine_select.children.item(1).firstChild.data
 					, query
-					, searchEngineSelect.children.item(1).value
+					, search_engine_select.children.item(1).value
 				);
 			}
 		} else {
-			openSearchQuery(
-				  searchEngineSelect.children.item(selected).firstChild.data
+			open_search_query(
+				  search_engine_select.children.item(selected).firstChild.data
 				, query
-				, searchEngineSelect.value
+				, search_engine_select.value
 			);
 		}
 	}
 ;
 for (; i < len; i++) {
 	// make regexps for matching commands dictated for a certain search engine
-	searchEngineRegex = "^(" +
-		searchEngines[i].name
+	search_engine_regex = "^(" +
+		search_engines[i].name
 			// punctuation optional
 			.replace(punctuation, "\\W*")
 			// whitespace optional
 			.replace(whitespace, "\\s*")
 			// allow possible spaces from capitalization (e.g. YouTube ~ You Tube)
-			.replace(midWordCapitalization, "$1\\s*$2") +
+			.replace(mid_word_capitalization, "$1\\s*$2") +
 		")\\s+([\\s\\S]+)$" // query capture group
 	;
-	searchEngineRegexs.push(new RegExp(searchEngineRegex, "i"));
+	search_engine_regexs.push(new RegExp(search_engine_regex, "i"));
 }
-searchEngineSelect.children.item(0).value = searchEngines[0].uri;
-for (i = 0, len = searchEngines.length; i < len; i++) {
-	searchEngineSelect.appendChild(new Option(
-		searchEngines[i].name, searchEngines[i].uri
+search_engine_select.children.item(0).value = search_engines[0].uri;
+for (i = 0, len = search_engines.length; i < len; i++) {
+	search_engine_select.appendChild(new Option(
+		search_engines[i].name, search_engines[i].uri
 	));
 }
 if (DEBUG) {
 	var
 		  form = $("debug")
-		, testQueryBtn = $("test-query")
-		, debugEngineName = $("debug-engine-name").appendChild(doc.createTextNode(""))
-		, debugQuery = $("debug-query").appendChild(doc.createTextNode(""))
-		, debugURI = $("debug-uri").appendChild(doc.createTextNode(""))
+		, test_query_btn = $("test-query")
+		, debug_engine_name = $("debug-engine-name").appendChild(document.createTextNode(""))
+		, debug_query = $("debug-query").appendChild(document.createTextNode(""))
+		, debug_URI = $("debug-uri").appendChild(document.createTextNode(""))
 	;
-	openSearchQuery = function (name, query, templateURI) {
-		debugEngineName.data = name;
-		debugQuery.data = query;
-		debugURI.data = templateURI.replace(/%s/g, encodeURIComponent(query));
+	open_search_query = function (name, query, templateURI) {
+		debug_engine_name.data = name;
+		debug_query.data = query;
+		debug_URI.data = templateURI.replace(/%s/g, encodeURIComponent(query));
 	};
 	form.addEventListener("submit", function (event) {
 		event.preventDefault();
 	}, false);
-	testQueryBtn.addEventListener("DOMActivate", function () {
-		onSpeechChange({target: voiceSearch});
+	test_query_btn.addEventListener("DOMActivate", function () {
+		on_speech_change({target: voice_search_input});
 	}, false);
 } else {
-	voiceSearch.addEventListener(speechChangeEvent, onSpeechChange, false);
+	voice_search_input.addEventListener(speech_change_event, on_speech_change, false);
 }
-}());
+}(document));

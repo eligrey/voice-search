@@ -2,7 +2,7 @@
 	  "extension_name":{"message":"Voice Search"}
 	, "extension_description":{"message":"Search by speaking."}
 	
-	, "version_message":{"message":"Version 1.0.5"}
+	, "version_message":{"message":"Version 1.0.6"}
 	, "changelog":{"message":"Changelog"}
 	, "report_bug":{"message":"Report a bug"}
 	, "donate":{"message":"Donate"}
@@ -21,7 +21,10 @@
 	, "opts_delete_search_engine":{"message":"Drag search engines to the trash can to delete them."}
 	, "opts_delete_drag":{"message":"Drag to trash can to delete"}
 	, "opts_website_integration":{"message":"Website Integration"}
-	, "opts_enable_website_integration":{"message":"Add speech input buttons to search boxes on websites."}
+	, "opts_website_integration_label":{"message":"Add speech input buttons to "}
+	, "opts_website_integration_all":{"message":"all text fields"}
+	, "opts_website_integration_search":{"message":"search fields"}
+	, "opts_website_integration_none":{"message":"nothing"}
 	, "opts_save_button":{"message":"Save"}
 	, "opts_restore_defaults_button":{"message":"Restore Defaults"}
 	, "opts_settings_saved":{"message":"Settings saved."}

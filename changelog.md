@@ -1,6 +1,16 @@
 Voice Search Changelog
 ======================
 
+1.0.6
+-----
+
+* Added a third state for website integration, which is to add speech input buttons to
+  *all* input elements. This should take care Speechify.
+* Using the `SpeechInputResult` interface now that Chrome stable supports it.
+* Normalized code style.
+* Sorta-linted all non-lib code. There are some things in JSLint that I disagree with,
+  such as `in`, referencing a function in it's own definition, and `!!+` being bad.
+
 1.0.5
 -----
 
