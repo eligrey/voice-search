@@ -1,0 +1,65 @@
+{
+	  "extension_name":{"message":"Голосовой поиск"}
+	, "extension_description":{"message":"Поиск, управляемый голосом."}
+	
+	, "version_message":{"message":"Версия 1.0.6"}
+	, "changelog":{"message":"Журнал изменений"}
+	, "report_bug":{"message":"Сообщить об ошибке в программе"}
+	, "donate":{"message":"Пожертвовать"}
+	
+	, "popup_title":{"message":"Голосовой поиск"}
+	, "popup_search_engines_select":{"message":"Системы поиска"}
+	, "popup_debug_test_query":{"message":"Проверка"}
+	, "popup_debug_engine_name":{"message":"Система поиска:"}
+	, "popup_debug_query":{"message":"Запрос:"}
+	, "popup_debug_uri":{"message":"URI:"}
+	
+	, "opts_title":{"message":"Настройки голосового поиска"}
+	, "opts_search_engines":{"message":"Системы поиска"}
+	, "opts_uri_format":{"message":"Пропишите %s в том месте, где должен быть запрос."}
+	, "opts_default_engine":{"message":"Первая по счету поисковая система будет использоваться по умолчанию."}
+	, "opts_delete_search_engine":{"message":"Для удаления перетащите систему поиска в корзину."}
+	, "opts_delete_drag":{"message":"Для удаления перетащите в корзину"}
+	, "opts_website_integration":{"message":"Интеграция с сайтами"}
+	, "opts_website_integration_label":{"message":"Добавить кнопки голосового поиска "}
+	, "opts_website_integration_all":{"message":"ко всем текстовым полям"}
+	, "opts_website_integration_search":{"message":"к полям поиска"}
+	, "opts_website_integration_none":{"message":"никуда"}
+	, "opts_save_button":{"message":"Сохранить"}
+	, "opts_restore_defaults_button":{"message":"Восстановить исходные настройки"}
+	, "opts_settings_saved":{"message":"Настройки сохранены."}
+	, "opts_name_column":{"message":"Имя"}
+	, "opts_uri_column":{"message":"URL"}
+	
+	, "background_view_title":{"message":"Скрытая страница \"Голосового поиска\""}
+		
+	, "duckduckgo_search_name":{"message":"DuckDuckGo"}
+	, "duckduckgo_search_uri_template":{"message":"http://duckduckgo.com/?q=%s"}
+	
+	, "wikipedia_search_name":{"message":"Wikipedia"}
+	, "wikipedia_search_uri_template":{"message":"http://en.wikipedia.org/w/index.php?title=Special:Search&search=%s"}
+	
+	, "google_search_name":{"message":"Google"}
+	, "google_search_uri_template":{"message":"http://www.google.com/search?q=%s"}
+	
+	, "google_images_search_name":{"message":"Google Images"}
+	, "google_images_search_uri_template":{"message":"http://www.google.com/images?q=%s"}
+	
+	, "google_maps_search_name":{"message":"Google Maps"}
+	, "google_maps_search_uri_template":{"message":"http://maps.google.com/maps?q=%s"}
+	
+	, "google_videos_search_name":{"message":"Google Videos"}
+	, "google_videos_search_uri_template":{"message":"http://www.google.com/search?q=%s&tbs=vid:1"}
+	
+	, "youtube_search_name":{"message":"YouTube"}
+	, "youtube_search_uri_template":{"message":"http://www.youtube.com/results?search_query=%s"}
+	
+	, "wolframalpha_search_name":{"message":"Wolfram|Alpha"}
+	, "wolframalpha_search_uri_template":{"message":"http://www.wolframalpha.com/input/?i=%s"}
+	
+	, "bing_search_name":{"message":"Bing"}
+	, "bing_search_uri_template":{"message":"http://www.bing.com/search?q=%s"}
+	
+	, "yahoo_search_name":{"message":"Yahoo!"}
+	, "yahoo_search_uri_template":{"message":"http://search.yahoo.com/search?p=%s"}
+}
