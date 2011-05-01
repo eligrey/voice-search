@@ -21,9 +21,9 @@ var
 	, $ = function (id) {
 		return document.getElementById(id);
 	}
-	, open_search_query = function (name, query, templateURI) {
+	, open_search_query = function (name, template_uri, query) {
 		chrome.tabs.create({
-			  url: templateURI.replace("%s", encodeURIComponent(query))
+			  url: template_uri.replace(/%s/g, encodeURIComponent(query))
 			, selected: true
 		});
 	}
@@ -41,7 +41,8 @@ var
 	, len = search_engines.length
 	, on_speech_change = function (event) {
 		var
-			  query = event.results.item(0).utterance
+			  query = "results" in event ?
+			  	event.results.item(0).utterance : event.target.value
 			, selected = search_engine_select.selectedIndex
 		;
 		if (!DEBUG) {
@@ -70,21 +71,17 @@ var
 					}
 				}
 			}
-			if (best_match.matched) {
-				open_search_query(best_match.name, best_match.query, best_match.uri);
-			} else {
-				// otherwise use the default search engine
-				open_search_query(
-					  search_engine_select.children.item(1).firstChild.data
-					, query
-					, search_engine_select.children.item(1).value
-				);
+			if (!best_match.matched) {
+				// use default search engine if no match
+				best_match = search_engines[0];
+				best_match.query = query;
 			}
+			open_search_query(best_match.name, best_match.uri, best_match.query);
 		} else {
 			open_search_query(
 				  search_engine_select.children.item(selected).firstChild.data
-				, query
 				, search_engine_select.value
+				, query
 			);
 		}
 	}
@@ -117,10 +114,10 @@ if (DEBUG) {
 		, debug_query = $("debug-query").appendChild(document.createTextNode(""))
 		, debug_URI = $("debug-uri").appendChild(document.createTextNode(""))
 	;
-	open_search_query = function (name, query, templateURI) {
+	open_search_query = function (name, template_uri, query) {
 		debug_engine_name.data = name;
 		debug_query.data = query;
-		debug_URI.data = templateURI.replace(/%s/g, encodeURIComponent(query));
+		debug_URI.data = template_uri.replace(/%s/g, encodeURIComponent(query));
 	};
 	form.addEventListener("submit", function (event) {
 		event.preventDefault();

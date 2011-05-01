@@ -1,6 +1,14 @@
 Voice Search Changelog
 ======================
 
+1.0.7
+-----
+
+* Fixed debug mode.
+* Fixed not replacing all instances of `%s` (for real this time).
+* Added Russian locale by Pavel Argentov.
+* Removed unused PayPal button icon.
+
 1.0.6
 -----
 
