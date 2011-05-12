@@ -73,7 +73,7 @@ Roadmap
 	</dd>
 </dl>
 
-![Tracking image](//in.getclicky.com/212712ns.gif =1x1)
+![Tracking image](//in.getclicky.com/212712ns.gif)
 
   [1]: https://chrome.google.com/webstore/detail/hhfkcobomkalfdlmkongnhnhahkmnaad
   [2]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/popup.png
