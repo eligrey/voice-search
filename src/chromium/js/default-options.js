@@ -7,7 +7,7 @@
 /*jslint laxbreak: true, strict: true*/
 /*global localStorage, i18n*/
 
-(function () {
+(function() {
 "use strict";
 var opts = localStorage;
 // pre-1.0.6 Voice Search used camelCase option names

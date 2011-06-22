@@ -7,20 +7,20 @@
 /*jslint laxbreak: true, strict: true*/
 /*global location, document, chrome*/
 
-(function (document) {
+(function(document) {
 "use strict";
 
-var init = function (website_integration) {
+var init = function(website_integration) {
 	if (website_integration === "none") {
 		return;
 	}
 	var
 		  full_host = location.hostname
 		, host = full_host.split(".").slice(-2).join(".")
-		, $ = function (query) {
+		, $ = function(query) {
 			return document.querySelectorAll(query);
 		}
-		, inject_CSS = function () {
+		, inject_CSS = function() {
 			var
 				  style = document.createElement("style")
 				, rules = arguments
@@ -32,12 +32,16 @@ var init = function (website_integration) {
 				style.sheet.insertRule(rules[i], style.sheet.cssRules.length);
 			}
 		}
-		, submit = function (event) {
-			event.target.form.submit();
+		, submit = function(event) {
+			var target = event.target;
+			if (!target.grammar && !target.webkitGrammar) {
+				// don't auto-submit if a grammar is specified (compatibility with Google)
+				target.form.submit();
+			}
 		}
 		, speech_change_event = ("onspeechchange" in document.createElement("input") ? "" : "webkit")
 			+ "speechchange"
-		, add_speech_input = function (elts, auto_submit) {
+		, add_speech_input = function(elts, auto_submit) {
 			if (elts === null) {
 				return;
 			}
@@ -47,7 +51,8 @@ var init = function (website_integration) {
 			;
 			while (i--) {
 				elt = elts[i];
-				if (auto_submit) {
+				if (auto_submit && !elt.speech && !elt.webkitSpeech) {
+					// don't auto-submit if speech is already being used
 					elt.addEventListener(speech_change_event, submit, false);
 				}
 				elt.speech = elt.webkitSpeech = true;
@@ -73,7 +78,7 @@ var init = function (website_integration) {
 			, {host: "youtube.com", selectors: "#masthead-search-term"}
 		]
 		, i = sites.length
-		, arr = function (maybe_array) {
+		, arr = function(maybe_array) {
 			return [].concat(maybe_array);
 		}
 		, selectors
@@ -110,7 +115,7 @@ var init = function (website_integration) {
 }
 
 , port = chrome.extension.connect({name: chrome.extension.getURL("")})
-, init_listener = function (website_integration) {
+, init_listener = function(website_integration) {
 	port.onMessage.removeListener(init_listener);
 	init(website_integration);
 }

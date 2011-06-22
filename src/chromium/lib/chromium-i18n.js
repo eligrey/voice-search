@@ -1,5 +1,5 @@
 /* Chromium DOM i18n: Easy i18n for your Chromium extensions and apps' DOM.
- * 2011-04-05
+ * 2011-06-22
  *
  * By Eli Grey, http://eligrey.com
  * Public Domain.
@@ -12,8 +12,11 @@
 (function (document) {
 	"use strict";
 	var
-		i18n = self.i18n = function (key) {
-			return chrome.i18n.getMessage(key);
+		i18n = self.i18n = function(key, substitutions) {
+			if (key === "@@IETF_lang_tag") {
+				return i18n("@@ui_locale").replace(/_/g, "-");
+			}
+			return chrome.i18n.getMessage(key, substitutions);
 		}
 		, localeText = document.querySelectorAll("[data-i18n]")
 		, i = localeText.length
@@ -23,6 +26,8 @@
 		, term
 		, child
 		, len
+		, key
+		, substitutions
 	;
 	while (i--) {
 		elt = localeText.item(i);

@@ -14,14 +14,14 @@ if (DEBUG && location.pathname !== "/views/popup-debug.xhtml") {
 	location.replace("/views/popup-debug.xhtml");
 }
 
-(function (document) {
+(function(document) {
 "use strict";
 var
 	  opts = localStorage
-	, $ = function (id) {
+	, $ = function(id) {
 		return document.getElementById(id);
 	}
-	, open_search_query = function (name, template_uri, query) {
+	, open_search_query = function(name, template_uri, query) {
 		chrome.tabs.create({
 			  url: template_uri.replace(/%s/g, encodeURIComponent(query))
 			, selected: true
@@ -39,7 +39,7 @@ var
 	, search_engine_regex
 	, i = 0
 	, len = search_engines.length
-	, on_speech_change = function (event) {
+	, on_speech_change = function(event) {
 		var
 			  query = "results" in event ?
 			  	event.results.item(0).utterance : event.target.value
@@ -114,15 +114,15 @@ if (DEBUG) {
 		, debug_query = $("debug-query").appendChild(document.createTextNode(""))
 		, debug_URI = $("debug-uri").appendChild(document.createTextNode(""))
 	;
-	open_search_query = function (name, template_uri, query) {
+	open_search_query = function(name, template_uri, query) {
 		debug_engine_name.data = name;
 		debug_query.data = query;
 		debug_URI.data = template_uri.replace(/%s/g, encodeURIComponent(query));
 	};
-	form.addEventListener("submit", function (event) {
+	form.addEventListener("submit", function(event) {
 		event.preventDefault();
 	}, false);
-	test_query_btn.addEventListener("DOMActivate", function () {
+	test_query_btn.addEventListener("DOMActivate", function() {
 		on_speech_change({target: voice_search_input});
 	}, false);
 } else {

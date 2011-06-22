@@ -12,12 +12,15 @@
 */
 
 
-(function (document) {
+(function(document) {
 	"use strict";
 	var
 		  $ = jQuery
+		, text = function(data) {
+			return document.createTextNode(data);
+		}
 		, opts = localStorage
-		, id = function (id) {
+		, id = function(id) {
 			return document.getElementById(id);
 		}
 		, save_btn = id("save")
@@ -31,12 +34,12 @@
 		}
 		, message
 		, message_timeout
-		, update_status = function (messageText) {
+		, update_status = function(message_text) {
 			if (message) {
 				clearTimeout(message_timeout);
 				status.removeChild(message);
 			}
-			message = status.appendChild(document.createTextNode(messageText));
+			message = status.appendChild(text(message_text));
 			message_timeout = setTimeout(function() {
 				status.removeChild(message);
 				message = null;
@@ -45,7 +48,7 @@
 		, search_engines = JSON.parse(opts.search_engines)
 		, grid
 		, origin_regex = /^[\w\-]+:\/*\[?[\w\.:\-]+\]?(?::\d+)?/
-		, URI_formatter = function (row, cell, value, columnDef, dataContext) {
+		, URI_formatter = function(row, cell, value, columnDef, dataContext) {
 			value = value || "";
 			var
 				  origin = value.match(origin_regex)
@@ -56,12 +59,12 @@
 			}
 			return "<img src='" + favicon + "' /> " + value;
 		}
-		, save_opts = function () {
+		, save_opts = function() {
 			opts.search_engines = JSON.stringify(grid.getData());
 			opts.website_integration = website_integration_select.value;
 			update_status(i18n("opts_settings_saved"));
 		}
-		, restore_opts = function () {
+		, restore_opts = function() {
 			opts.clear();
 			location.reload();
 		}
