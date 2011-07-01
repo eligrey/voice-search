@@ -10,29 +10,15 @@
 (function() {
 "use strict";
 var opts = localStorage;
-// pre-1.0.6 Voice Search used camelCase option names
-if (opts.searchEngines) {
-	opts.search_engines = opts.searchEngines;
-	delete opts.searchEngines;
-}
-if (opts.websiteIntegration) {
-	if (opts.websiteIntegration === "1") {
-		opts.website_integration = "all";
-	} else {
-		opts.website_integration = "none";
-	}
-	delete opts.websiteIntegration;
-}
-
 if (!opts.search_engines) {
 	opts.search_engines = JSON.stringify([
-		 {
-			  "name": i18n("duckduckgo_search_name")
-			, "uri": i18n("duckduckgo_search_uri_template")
-		}
-		, {
+		  {
 			  "name": i18n("google_search_name")
 			, "uri": i18n("google_search_uri_template")
+		}
+		, {
+			  "name": i18n("duckduckgo_search_name")
+			, "uri": i18n("duckduckgo_search_uri_template")
 		}
 		, {
 			  "name": i18n("wikipedia_search_name")
