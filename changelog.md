@@ -1,6 +1,18 @@
 Voice Search Changelog
 ======================
 
+1.0.9
+-----
+
+* Made Google the default search engine again, partially in response to DuckDuckGo's
+  immature FUD campaign against Google.
+
+1.0.8
+-----
+
+* No longer auto-submitting when speech input and/or grammars are already being used.
+* Fixed some margin issues.
+
 1.0.7
 -----
 
