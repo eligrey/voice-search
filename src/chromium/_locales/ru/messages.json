@@ -2,7 +2,7 @@
 	  "extension_name":{"message":"Голосовой поиск"}
 	, "extension_description":{"message":"Поиск, управляемый голосом."}
 	
-	, "version_message":{"message":"Версия 1.0.8"}
+	, "version_message":{"message":"Версия 1.0.9"}
 	, "changelog":{"message":"Журнал изменений"}
 	, "report_bug":{"message":"Сообщить об ошибке в программе"}
 	, "donate":{"message":"Пожертвовать"}
