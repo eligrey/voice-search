@@ -1,7 +1,7 @@
 Voice Search License
 ====================
 
-Copyright &copy; 2012 [Eli Grey[1].
+Copyright &copy; 2012 [Eli Grey][1].
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
