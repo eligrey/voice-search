@@ -2,7 +2,7 @@
 	  "extension_name":{"message":"Голосовой поиск"}
 	, "extension_description":{"message":"Поиск, управляемый голосом."}
 	
-	, "version_message":{"message":"Версия 1.0.9"}
+	, "version_message":{"message":"Версия 1.1.2"}
 	, "changelog":{"message":"Журнал изменений"}
 	, "report_bug":{"message":"Сообщить об ошибке в программе"}
 	, "donate":{"message":"Пожертвовать"}
@@ -37,19 +37,19 @@
 	, "duckduckgo_search_uri_template":{"message":"http://duckduckgo.com/?q=%s"}
 	
 	, "wikipedia_search_name":{"message":"Wikipedia"}
-	, "wikipedia_search_uri_template":{"message":"http://en.wikipedia.org/w/index.php?title=Special:Search&search=%s"}
+	, "wikipedia_search_uri_template":{"message":"http://ru.wikipedia.org/w/index.php?title=Special:Search&search=%s"}
 	
 	, "google_search_name":{"message":"Google"}
-	, "google_search_uri_template":{"message":"http://www.google.com/search?q=%s"}
+	, "google_search_uri_template":{"message":"http://www.google.ru/search?q=%s"}
 	
 	, "google_images_search_name":{"message":"Google Images"}
-	, "google_images_search_uri_template":{"message":"http://www.google.com/images?q=%s"}
+	, "google_images_search_uri_template":{"message":"http://www.google.ru/images?q=%s"}
 	
 	, "google_maps_search_name":{"message":"Google Maps"}
-	, "google_maps_search_uri_template":{"message":"http://maps.google.com/maps?q=%s"}
+	, "google_maps_search_uri_template":{"message":"http://maps.google.ru/maps?q=%s"}
 	
 	, "google_videos_search_name":{"message":"Google Videos"}
-	, "google_videos_search_uri_template":{"message":"http://www.google.com/search?q=%s&tbs=vid:1"}
+	, "google_videos_search_uri_template":{"message":"http://www.google.ru/search?q=%s&tbs=vid:1"}
 	
 	, "youtube_search_name":{"message":"YouTube"}
 	, "youtube_search_uri_template":{"message":"http://www.youtube.com/results?search_query=%s"}

@@ -1,7 +1,7 @@
 /*! Voice Search Chromium Extension
  *
- *  By Eli Grey, http://eligrey.com
- *  License: MIT/X11. See LICENSE.md
+ *  Copyright 2012 Eli Grey
+ *  	See LICENSE.md
  */
 
 /*jslint laxbreak: true, strict: true*/
@@ -21,11 +21,12 @@ var
 	, $ = function(id) {
 		return document.getElementById(id);
 	}
-	, open_search_query = function(name, template_uri, query) {
+	, open_search_query = function(raw_query, name, template_uri, query) {
 		chrome.tabs.create({
 			  url: template_uri.replace(/%s/g, encodeURIComponent(query))
 			, selected: true
 		});
+		close();
 	}
 	, voice_search_input = $("voice-search")
 	, search_engine_select = $("search-engines")
@@ -39,6 +40,15 @@ var
 	, search_engine_regex
 	, i = 0
 	, len = search_engines.length
+	, close_on_blur = true
+	, on_view_blur = function() {
+		if (close_on_blur) {
+			close();
+		}
+	}
+	, on_mouse_down = function() {
+		close_on_blur = false;
+	}
 	, on_speech_change = function(event) {
 		var
 			  query = "results" in event ?
@@ -76,10 +86,11 @@ var
 				best_match = search_engines[0];
 				best_match.query = query;
 			}
-			open_search_query(best_match.name, best_match.uri, best_match.query);
+			open_search_query(query, best_match.name, best_match.uri, best_match.query);
 		} else {
 			open_search_query(
-				  search_engine_select.children.item(selected).firstChild.data
+				  query
+				, search_engine_select.children.item(selected).firstChild.data
 				, search_engine_select.value
 				, query
 			);
@@ -102,9 +113,11 @@ for (; i < len; i++) {
 }
 search_engine_select.children.item(0).value = search_engines[0].uri;
 for (i = 0, len = search_engines.length; i < len; i++) {
-	search_engine_select.appendChild(new Option(
-		search_engines[i].name, search_engines[i].uri
-	));
+	if (search_engines[i].in_popup !== false) {
+		search_engine_select.appendChild(new Option(
+			search_engines[i].name, search_engines[i].uri
+		));
+	}
 }
 if (DEBUG) {
 	var
@@ -114,18 +127,20 @@ if (DEBUG) {
 		, debug_query = $("debug-query").appendChild(document.createTextNode(""))
 		, debug_URI = $("debug-uri").appendChild(document.createTextNode(""))
 	;
-	open_search_query = function(name, template_uri, query) {
+	open_search_query = function(raw_query, name, template_uri, query) {
 		debug_engine_name.data = name;
 		debug_query.data = query;
 		debug_URI.data = template_uri.replace(/%s/g, encodeURIComponent(query));
 	};
 	form.addEventListener("submit", function(event) {
 		event.preventDefault();
-	}, false);
+	});
 	test_query_btn.addEventListener("DOMActivate", function() {
 		on_speech_change({target: voice_search_input});
-	}, false);
+	});
 } else {
-	voice_search_input.addEventListener(speech_change_event, on_speech_change, false);
+	voice_search_input.addEventListener("mousedown", on_mouse_down);
+	voice_search_input.addEventListener(speech_change_event, on_speech_change);
+	self.addEventListener("blur", on_view_blur);
 }
 }(document));

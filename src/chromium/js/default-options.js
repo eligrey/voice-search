@@ -1,11 +1,15 @@
 /*! Voice Search Chromium Extension
  *
- *  By Eli Grey, http://eligrey.com
- *  License: MIT/X11. See LICENSE.md
+ *  Copyright 2012 Eli Grey
+ *  	See LICENSE.md
  */
 
 /*jslint laxbreak: true, strict: true*/
 /*global localStorage, i18n*/
+
+var catincan_config = {
+	name: "xxx"
+};
 
 (function() {
 "use strict";
@@ -17,6 +21,10 @@ if (!opts.search_engines) {
 			, "uri": i18n("google_search_uri_template")
 		}
 		, {
+			  "name": "Search for"
+			, "uri": i18n("google_search_uri_template")
+			, "in_popup": false
+		}		, {
 			  "name": i18n("duckduckgo_search_name")
 			, "uri": i18n("duckduckgo_search_uri_template")
 		}
@@ -29,12 +37,31 @@ if (!opts.search_engines) {
 			, "uri": i18n("google_images_search_uri_template")
 		}
 		, {
+			  "name": "Images of"
+			, "uri": i18n("google_images_search_uri_template")
+			, "in_popup": false
+		}		, {
+			  "name": "Pictures of"
+			, "uri": i18n("google_images_search_uri_template")
+			, "in_popup": false
+		}
+		, {
 			  "name": i18n("google_maps_search_name")
 			, "uri": i18n("google_maps_search_uri_template")
 		}
 		, {
+			  "name": "Where is"
+			, "uri": i18n("google_maps_search_uri_template")
+			, "in_popup": false
+		}
+		, {
 			  "name": i18n("google_videos_search_name")
 			, "uri": i18n("google_videos_search_uri_template")
+		}
+		, {
+			  "name": "Videos of"
+			, "uri": i18n("google_videos_search_uri_template")
+			, "in_popup": false
 		}
 		, {
 			  "name": i18n("youtube_search_name")
@@ -43,6 +70,11 @@ if (!opts.search_engines) {
 		, {
 			  "name": i18n("wolframalpha_search_name")
 			, "uri": i18n("wolframalpha_search_uri_template")
+		}
+		, {
+			  "name": "Calculate"
+			, "uri": i18n("wolframalpha_search_uri_template")
+			, "in_popup": false
 		}
 		, {
 			  "name": i18n("bing_search_name")

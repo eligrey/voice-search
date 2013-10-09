@@ -1,7 +1,11 @@
-Voice Search License
-====================
+Licenses
+========
 
-Copyright &copy; 2012 [Eli Grey][1].
+
+Voice Search
+------------
+
+Copyright &copy; 2013 [Eli Grey][1].
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
@@ -88,7 +92,7 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-  [1]: http://oftn.org/
-  [2]: https://github.com/eligrey/voice-search/blob/master/src/chromium/images/chromium-speech_input_mic_full-68.png
+  [1]: http://eligrey.com
+  [2]: http://purl.eligrey.com/github/voice-search/blob/master/src/images/chrome-speech_input_mic_full.png
   [3]: http://www.chromium.org/
   [4]: http://github.com/mleibman/slickgrid

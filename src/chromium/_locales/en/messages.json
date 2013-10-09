@@ -2,7 +2,7 @@
 	  "extension_name":{"message":"Voice Search"}
 	, "extension_description":{"message":"Search by speaking."}
 	
-	, "version_message":{"message":"Version 1.0.9"}
+	, "version_message":{"message":"Version 1.1.2"}
 	, "changelog":{"message":"Changelog"}
 	, "report_bug":{"message":"Report a bug"}
 	, "donate":{"message":"Donate"}

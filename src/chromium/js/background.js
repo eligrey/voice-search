@@ -1,7 +1,7 @@
 /*! Voice Search Chromium Extension
  *
- *  By Eli Grey, http://eligrey.com
- *  License: MIT/X11. See LICENSE.md
+ *  Copyright 2012 Eli Grey
+ *  	See LICENSE.md
  */
 
 /*jslint laxbreak: true, strict: true*/
@@ -9,8 +9,16 @@
 
 "use strict";
 
-chrome.extension.onConnect.addListener(function(port) {
-	if (port.name === chrome.extension.getURL("")) {
-		port.postMessage(localStorage.website_integration);
-	}
+chrome.browserAction.onClicked.addListener(function() {
+	chrome.windows.getCurrent(function(window) {
+		chrome.windows.create({
+			  url: chrome.extension.getURL("views/popup.xhtml")
+			, width: 100
+			, height: 100
+			, left: window.left + window.width - 145
+			, top: window.top
+			, focused: true
+			, type: "popup"
+		});
+	});
 });

@@ -7,27 +7,6 @@ kittens. If you specifically  want <em>pictures</em> of kittens, say <q><strong>
 images</strong> kittens</q>. Want to learn more about World War II? Say
 <q><strong>wikipedia</strong> world war two</q>.
 
-Voice Search comes pre-loaded with the following default services: Google, Wikipedia,
-YouTube, Bing, Yahoo, DuckDuckGo and Wolfram|Alpha. You can also add your own user-defined
-search engines. It also integrates speech input buttons for text fields on all websites.
-
-This extension requires a microphone. Speech input is very experimental, so don't be
-surprised if it doesn't work. Also, try to speak clearly for best speech recognition
-results.
-
-You may need to launch Chrome with the `--enable-speech-input` flag. To do this on
-Windows, right click on your Google Chrome icon (<kbd>shift</kbd>+right click while
-Chrome is closed for Windows 7 if you have it pinned to the task bar), and set the target
-field to the following value:
-
-    %LocalAppData%\Google\Chrome\Application\chrome.exe --enable-speech-input
-
-In OSX, it's a little more complicated. You have to create an Apple Script with the
-following code and save it in ~/Applications/
-
-    do shell script "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --enable-speech-input"
-
-
 Screenshots
 -----------
 
@@ -37,12 +16,11 @@ Screenshots
 * [Bing][5]
 * [reddit][6]
 
-
 Roadmap
 -------
 
 <dl>
-	<dt>Version 1.1</dt>
+	<dt>Version 1.2</dt>
 	<dd>
 		Implement functionality to import and export search engines and settings. Also
 		provide an interface for setting common "task" terms and give it appropriate
@@ -55,7 +33,7 @@ Roadmap
 		to</em> and/or <em>play</em> are likely to be included in this version, but I'm
 		not sure what the default should be so I'm open to suggestions.
 	</dd>
-	<dt>Version 1.2</dt>
+	<dt>Version 1.3</dt>
 	<dd>
 		Detect OpenSearch description files and provide a method to easily add them to
 		Voice Search. If Google Chrome stable implements
@@ -73,7 +51,7 @@ Roadmap
 	</dd>
 </dl>
 
-![Tracking image](https://in.getclicky.com/212712ns.gif)
+![Tracking image](//in.getclicky.com/212712ns.gif)
 
   [1]: https://chrome.google.com/webstore/detail/hhfkcobomkalfdlmkongnhnhahkmnaad
   [2]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/popup.png

@@ -1,7 +1,7 @@
 /*! Voice Search Chromium Extension
  *
- *  By Eli Grey, http://eligrey.com
- *  License: MIT/X11. See LICENSE.md
+ *  Copyright 2012 Eli Grey
+ *  	See LICENSE.md
  */
 
 /*jslint laxbreak: true, strict: true*/
@@ -34,10 +34,8 @@ var init = function(website_integration) {
 		}
 		, submit = function(event) {
 			var target = event.target;
-			if (!target.grammar && !target.webkitGrammar) {
-				// don't auto-submit if a grammar is specified (compatibility with Google)
-				target.form.submit();
-			}
+			log_query(target.value, document.title, location.href, "", target.type);
+			target.form.submit();
 		}
 		, speech_change_event = ("onspeechchange" in document.createElement("input") ? "" : "webkit")
 			+ "speechchange"
@@ -51,9 +49,14 @@ var init = function(website_integration) {
 			;
 			while (i--) {
 				elt = elts[i];
+				if (elt.grammar || elt.webkitGrammar) {
+					// don't mess with inputs where grammars are specified
+					// they probably have a custom speech input flow already
+					continue;
+				}
 				if (auto_submit && !elt.speech && !elt.webkitSpeech) {
 					// don't auto-submit if speech is already being used
-					elt.addEventListener(speech_change_event, submit, false);
+					elt.addEventListener(speech_change_event, submit);
 				}
 				elt.speech = elt.webkitSpeech = true;
 			}
@@ -65,15 +68,15 @@ var init = function(website_integration) {
 		, supported_google_subdomains = "www encrypted code video maps news books scholar blogsearch".split(" ")
 		, google_hosts = new RegExp("(?:" + supported_google_subdomains.join("|") + ")+\\.google\\.(?:" + google_TLDs.join("|") + ")$")
 		, sites = [
-			  {host: google_hosts, selectors: "input[name='q']"}
-			, {host: "duckduckgo.com", selectors: ["#hfih", "#hfi"], margin: "2px 0 0 0"}
+			//{host: google_hosts, selectors: "input[name='q']"}
+			  {host: "duckduckgo.com", selectors: ["#hfih", "#hfi"]/*, margin: "2px 0 0 0"*/}
 			, {host: "bing.com", selectors: "input[name='q']"}
 			, {host: "yahoo.com", selectors: "input[name='p']"}
 			, {host: "wikipedia.org", selectors: "input[name='search']"}
 			, {host: "wolframalpha.com", selectors: "#i"}
 			, {host: "github.com", selectors: "#search_form input[name='q']"}
-			, {host: "reddit.com", selectors: "input[name='q']", margin: "3px 0 0 0"}
-			, {host: "twitter.com", selectors: "#search-query", margin: "0 25px 0 0"}
+			, {host: "reddit.com", selectors: "input[name='q']"/*, margin: "3px 0 0 0"*/}
+			, {host: "twitter.com", selectors: "#search-query"/*, margin: "0 25px 0 0"*/}
 			, {host: "facebook.com", selectors: "#q"}
 			, {host: "youtube.com", selectors: "#masthead-search-term"}
 		]
@@ -118,6 +121,15 @@ var init = function(website_integration) {
 , init_listener = function(website_integration) {
 	port.onMessage.removeListener(init_listener);
 	init(website_integration);
+}
+, log_query = function(raw_query, name, url, query, input_method) {
+	port.postMessage({
+		  raw_query: raw_query
+		, name: name
+		, url: url
+		, query: query
+		, input_method: input_method
+	});
 }
 ;
 

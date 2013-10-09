@@ -1,11 +1,40 @@
 Voice Search Changelog
 ======================
 
+1.1.2
+-----
+
+* Initial catincan campaign integration (will be removed after the campaign)
+
+1.1.1
+-----
+
+* Fixed license information.
+
+1.1.0
+-----
+
+* Fixed the browser action.
+* New browser action interaction flow using windows.
+* Added engine definitions for common phrases such as "search for" and "pictures of".
+* Added logging feature.
+
+1.0.11
+------
+
+* Updated manifest version.
+
+1.0.10
+------
+
+* Added Spanish locale by David Álvarez Robert.
+* Improved Russian locale (now uses google.ru instead of gooogle.com).
+* Removed instructions for older versions of Chrome from the readme.
+
 1.0.9
 -----
 
-* Made Google the default search engine again, partially in response to DuckDuckGo's
-  immature FUD campaign against Google.
+* Made Google the default search engine again.
 
 1.0.8
 -----

@@ -1,17 +1,21 @@
 {
 	  "name": "__MSG_extension_name__"
-	, "version": "1.0.9"
+	, "version": "1.1.2"
+	, "manifest_version": 2
 	, "description": "__MSG_extension_description__"
 	, "permissions": [
 		  "chrome://favicon/"
+		, "tabs"
+		, "storage"
 	]
 	, "default_locale": "en"
 	, "options_page": "views/options.html"
-	, "background_page": "views/background.xhtml"
+	, "background": {
+		"page": "views/background.xhtml"
+	}
 	, "browser_action": {
 		  "default_icon": "images/chromium-speech_input_mic_full-19.png"
 		, "default_title": "__MSG_popup_title__"
-		, "default_popup": "views/popup.xhtml"
 	}
 	, "icons": {
 		  "16": "images/chromium-speech_input_mic_full-16.png"

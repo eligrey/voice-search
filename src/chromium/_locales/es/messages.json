@@ -1,0 +1,65 @@
+{
+	  "extension_name":{"message":"Búsqueda por voz"}
+	, "extension_description":{"message":"Buscar hablando."}
+	
+	, "version_message":{"message":"Versión 1.1.2"}
+	, "changelog":{"message":"Registro de cambios"}
+	, "report_bug":{"message":"Reportar un error"}
+	, "donate":{"message":"Donar"}
+	
+	, "popup_title":{"message":"Búsqueda por voz"}
+	, "popup_search_engines_select":{"message":"Motores de búsqueda"}
+	, "popup_debug_test_query":{"message":"Prueba"}
+	, "popup_debug_engine_name":{"message":"Motor de búsqueda:"}
+	, "popup_debug_query":{"message":"Consulta:"}
+	, "popup_debug_uri":{"message":"URI:"}
+	
+	, "opts_title":{"message":"Opciones de la búsqueda de voz"}
+	, "opts_search_engines":{"message":"Motores de búsqueda"}
+	, "opts_uri_format":{"message":"Inserte %s donde debería ir la consulta."}
+	, "opts_default_engine":{"message":"El primer motor de búsqueda es el usado por defecto al buscar."}
+	, "opts_delete_search_engine":{"message":"Arrastre los motores de búsqueda a la papelera para eliminarlos."}
+	, "opts_delete_drag":{"message":"Arrastre a la parapelera para eliminar"}
+	, "opts_website_integration":{"message":"Integración en las páginas web"}
+	, "opts_website_integration_label":{"message":"Añadir botones de búsqueda por voz en "}
+	, "opts_website_integration_all":{"message":"todos los campos"}
+	, "opts_website_integration_search":{"message":"campos de búsqueda"}
+	, "opts_website_integration_none":{"message":"ningún lugar"}
+	, "opts_save_button":{"message":"Guardar"}
+	, "opts_restore_defaults_button":{"message":"Restaurar configuración por defecto"}
+	, "opts_settings_saved":{"message":"Configuración guardada."}
+	, "opts_name_column":{"message":"Nombre"}
+	, "opts_uri_column":{"message":"URL"}
+	
+	, "background_view_title":{"message":"Página en segundo plano de Búsqueda por Voz"}
+		
+	, "duckduckgo_search_name":{"message":"DuckDuckGo"}
+	, "duckduckgo_search_uri_template":{"message":"http://duckduckgo.com/?q=%s"}
+	
+	, "wikipedia_search_name":{"message":"Wikipedia"}
+	, "wikipedia_search_uri_template":{"message":"http://es.wikipedia.org/w/index.php?title=Special:Search&search=%s"}
+	
+	, "google_search_name":{"message":"Google"}
+	, "google_search_uri_template":{"message":"http://www.google.es/search?q=%s"}
+	
+	, "google_images_search_name":{"message":"Google Imagenes"}
+	, "google_images_search_uri_template":{"message":"http://www.google.es/images?q=%s"}
+	
+	, "google_maps_search_name":{"message":"Google Maps"}
+	, "google_maps_search_uri_template":{"message":"http://maps.google.es/maps?q=%s"}
+	
+	, "google_videos_search_name":{"message":"Google Videos"}
+	, "google_videos_search_uri_template":{"message":"http://www.google.es/search?q=%s&tbs=vid:1"}
+	
+	, "youtube_search_name":{"message":"YouTube"}
+	, "youtube_search_uri_template":{"message":"http://www.youtube.com/results?search_query=%s"}
+	
+	, "wolframalpha_search_name":{"message":"Wolfram Alfa"}
+	, "wolframalpha_search_uri_template":{"message":"http://www.wolframalpha.com/input/?i=%s"}
+	
+	, "bing_search_name":{"message":"Bing"}
+	, "bing_search_uri_template":{"message":"http://www.bing.com/search?q=%s"}
+	
+	, "yahoo_search_name":{"message":"Yahoo!"}
+	, "yahoo_search_uri_template":{"message":"http://search.yahoo.com/search?p=%s"}
+}

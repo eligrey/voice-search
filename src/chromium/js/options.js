@@ -1,7 +1,7 @@
 /*! Voice Search Chromium Extension
  *
- *  By Eli Grey, http://eligrey.com
- *  License: MIT/X11. See LICENSE.md
+ *  Copyright 2012 Eli Grey
+ *  	See LICENSE.md
  */
 
 /*jslint laxbreak: true, strict: true*/
@@ -108,8 +108,8 @@
 	
 	website_integration_select.selectedIndex = website_integration_options[opts.website_integration];
 	
-	save_btn.addEventListener("DOMActivate", save_opts, false);
-	restore_defaults_btn.addEventListener("DOMActivate", restore_opts, false);
+	save_btn.addEventListener("click", save_opts);
+	restore_defaults_btn.addEventListener("click", restore_opts);
 	
 	grid = new Slick.Grid(id("search-engines"), search_engines, columns, options);
 	
