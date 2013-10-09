@@ -8,7 +8,7 @@
 /*global localStorage, i18n*/
 
 var catincan_config = {
-	name: "xxx"
+	name: "voice-search-one-click-functionality-and-chrome-os-integration"
 };
 
 (function() {
