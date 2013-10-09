@@ -7,10 +7,6 @@
 /*jslint laxbreak: true, strict: true*/
 /*global localStorage, i18n*/
 
-var catincan_config = {
-	name: "voice-search-one-click-functionality-and-chrome-os-integration"
-};
-
 (function() {
 "use strict";
 var opts = localStorage;
