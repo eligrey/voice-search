@@ -22,6 +22,10 @@ Roadmap
 <dl>
 	<dt>Version 1.2</dt>
 	<dd>
+		One-click voice search from the browser button and Chrome OS integration with the Search key.
+	</dd>
+	<dt>Version 1.3</dt>
+	<dd>
 		Implement functionality to import and export search engines and settings. Also
 		provide an interface for setting common "task" terms and give it appropriate
 		defaults. For example, set <em>map</em> to Google Maps and <em>buy</em> to Google
@@ -33,7 +37,7 @@ Roadmap
 		to</em> and/or <em>play</em> are likely to be included in this version, but I'm
 		not sure what the default should be so I'm open to suggestions.
 	</dd>
-	<dt>Version 1.3</dt>
+	<dt>Version 1.4</dt>
 	<dd>
 		Detect OpenSearch description files and provide a method to easily add them to
 		Voice Search. If Google Chrome stable implements
