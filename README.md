@@ -1,7 +1,7 @@
 Voice Search
 ============
 
-[Voice Search][1] is a Google Chrome extension that provides a method to search by
+Voice Search is a Google Chrome extension that provides a method to search by
 speaking. For example, just click on microphone and say <q>kittens</q> to search for
 kittens. If you specifically  want <em>pictures</em> of kittens, say <q><strong>google
 images</strong> kittens</q>. Want to learn more about World War II? Say
@@ -10,11 +10,11 @@ images</strong> kittens</q>. Want to learn more about World War II? Say
 Screenshots
 -----------
 
-* [Voice Search popup][2]
-* [Options page][3]
-* [Google][4]
-* [Bing][5]
-* [reddit][6]
+* [Voice Search popup][1]
+* [Options page][2]
+* [Google][3]
+* [Bing][4]
+* [reddit][5]
 
 Roadmap
 -------
@@ -57,9 +57,8 @@ Roadmap
 
 ![Tracking image](//in.getclicky.com/212712ns.gif)
 
-  [1]: https://chrome.google.com/webstore/detail/hhfkcobomkalfdlmkongnhnhahkmnaad
-  [2]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/popup.png
-  [3]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/options.png
-  [4]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/google.png
-  [5]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/bing.png
-  [6]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/reddit.png
+  [1]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/popup.png
+  [2]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/options.png
+  [3]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/google.png
+  [4]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/bing.png
+  [5]: http://purl.eligrey.com/github/voice-search/raw/master/screenshots/reddit.png
